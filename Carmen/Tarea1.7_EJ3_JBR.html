@@ -21,10 +21,10 @@
         <!--Fin de la primera parte-->
         <hr>
         <h3>Datos de contacto:</h3>
-        <p>Nombre: <br> <input type="text" id="nombre" required placeholder="Nombre"></p> <!--he utilizado required para los campos requeridos-->
-        <p>Apellido: <br> <input type="text" id="apellido" required placeholder="Apellido"></p> <!--he utilizado required para los campos requeridos-->
-        <p>Teléfono: <br> <input type="number" id="telf" required placeholder="Teléfono"></p> <!--he utilizado required para los campos requeridos-->
-        <p>Correo electrónico: <br> <input type="text" inputmode="email" id="email"></p> <!--he utilizado inputmode="email" para que solo se puedan introducir emails en ese campo-->
+        <p>Nombre: <br> <input type="text" id="nombre" required placeholder="Nombre" autocomplete="name"></p> <!--he utilizado autocomplete para poder autocompletar los campos-->
+        <p>Apellido: <br> <input type="text" id="apellido" required placeholder="Apellido" autocomplete="family-name"></p> <!--he utilizado required para los campos requeridos-->
+        <p>Teléfono: <br> <input type="number" id="telf" required placeholder="Teléfono" autocomplete="tel"></p> <!--he utilizado required para los campos requeridos-->
+        <p>Correo electrónico: <br> <input type="text" inputmode="email" id="email" autocomplete="email"></p> <!--he utilizado inputmode="email" para que solo se puedan introducir emails en ese campo-->
         <p>¿Eres mayor de edad?
             <select> <!--he utilizado select para hacer una lista desplegable con dos opciones, si y no.-->
                 <option>Si</option>
