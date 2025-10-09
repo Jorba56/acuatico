@@ -1,7 +1,5 @@
+//Jorge Barriga Rubio
 let canciones=[];
-/*for(contador=0;contador<canciones.length;contador++){
-    console.log("Cancion",(contador+1)+":","| Name:",canciones[contador].name,"| Author:",canciones[contador].author,"| date:",canciones[contador].date[0],"|");
-};*/
 function añadirCancion(){
         let name_song=(document.getElementById("title").value);
         let author_song=(document.getElementById("author").value);
@@ -13,10 +11,34 @@ function añadirCancion(){
             year,
             fav_song,
         };
-    canciones.push(song);
+        for (let i = 0; i < canciones.length; i++) { //control for not having repeated song
+            if (canciones[i].name_song === song.name_song && canciones[i].author_song === song.author_song && canciones[i].year === song.year) {
+                repeated = true;
+                break; // if one is repeated, the loop stops
+            };
+        };
+
+        if (repeated) {
+            alert("Esa canción ya existe en tu playlist.");
+        } else {
+            canciones.push(song);
+            alert("Canción añadida correctamente.");
+        };
+        
 };
 function mostrar(){
-
-    window.alert("Song "+contador+":"+canciones[contador].name_song+canciones[contador].author_song+canciones[contador].year+canciones[contador].fav_song);
+    if (canciones.length===0){
+        alert("Por favor, introduce una cancion para mostrarla en tu playlist.") //if we dont songs in our playlist and we want to show it, this message will appear.
+    } else {
+    let playlist=" ";
+    for (let contador=0; contador<canciones.length;contador++){
+        playlist += //the playlist is a concatenation of the songs.
+            "Song " + (contador + 1) + ": " + // contador + 1 to not show something like "song 0" 
+            "Título: " + canciones[contador].name_song + ", " +
+            "Autor: " + canciones[contador].author_song + ", " +
+            "Año: " + canciones[contador].year + ", " +
+            "Favorita: " + canciones[contador].fav_song + "\n";
+    };
+    window.alert(playlist);
+    };   
 };
-

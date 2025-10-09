@@ -3,23 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="author" contentp="Jorge Barriga rubio">
+    <title>Playlist</title>
 </head>
 <body>
     <h1>Playlist</h1>
     <script src="canciones.js"></script>
     <form>
+        <hr>
+        <label for="title">
         <p>Título de la canción: </p>
         <input type="text" id="title">
-        <p>Autor de la canción: </p>
-        <input type="text" id="author">
-        <p>Año de lanzamiento: </p>
-        <input type="number" id="year_release">
-        <p>Añadir a favoritas: </p>
-        Sí<input type="radio" name="fav" id="fav" value="si">
-        No<input type="radio" name="fav" id="fav_no" value="no" >
+        </label>
+        <label for="author">
+            <p>Autor de la canción: </p>
+            <input type="text" id="author">
+        </label>
+        <label for="year_release">
+            <p>Año de lanzamiento: </p>
+            <input type="number" min="0" max="2025" id="year_release">
+        </label>
+        <hr>
+        <label for="fav">
+            <p>Añadir a favoritas: </p>
+            Sí<input type="radio" name="fav" id="fav" value="si" required>
+            No<input type="radio" name="fav" id="fav_no" value="no">
+        </label>
+        <br>
+        <br>
         <input type="button" id="add" value="Añadir a la playlist" onclick="añadirCancion()">
-        <input type="button" id="add" value="Mostrar playlist" onclick="mostrar()">
+        <input type="button" id="show" value="Mostrar playlist" onclick="mostrar()">
+        <hr>
     </form>
 </body>
 </html>
