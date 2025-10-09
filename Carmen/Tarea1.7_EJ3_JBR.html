@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jorge Barriga Rubio">
+    <title>Tarea1.7_ej3</title>
+</head>
+<body>
+    <h1>Pide lo que te apetece:</h1>
+    <p>Selecciona el numero de hamburgesas que desees:</p>
+    <form action="comandas@hamburgueseria.com" method="post/get" enctype="text/plain">
+        <ul>
+            <li><p>Hamburgesa completa: <input type="number" id="h_completa" step="1" min="0" max="10" placeholder="0" style="width: 4em;"></li> <!--he utilizado la etiqueta style para darle ancho con un pequeño comando css-->
+            <li><p>Hamburgesa de pollo: <input type="number" id="h_pollo" step="1" min="0" max="10" placeholder="0" style="width: 4em;"></li> <!--he utilizado la etiqueta step para poder aumentar/disminuir el numero con las flechas-->
+            <li><p>Hamburgesa doble: <input type="number" id="h_vegetariana" step="1"  min="0" max="10" placeholder="0" style="width: 4em;"></li> <!--min y max para establecer maximo y minimo-->
+            <li><p>Hamburgesa doble: <input type="number" id="h_completa" step="1"  min="0" max="10" placeholder="0" style="width: 4em;"></li>
+        </ul>
+        <p>Escribe las modificaciones o preferencias sobre el pedido:</p>
+        <textarea placeholder="Si el pepinillo no es para ti dinoslo."></textarea>
+        <!--Fin de la primera parte-->
+        <hr>
+        <h3>Datos de contacto:</h3>
+        <p>Nombre: <br> <input type="text" id="nombre" required placeholder="Nombre" autocomplete="name"></p> <!--he utilizado autocomplete para poder autocompletar los campos-->
+        <p>Apellido: <br> <input type="text" id="apellido" required placeholder="Apellido" autocomplete="family-name"></p> <!--he utilizado required para los campos requeridos-->
+        <p>Teléfono: <br> <input type="number" id="telf" required placeholder="Teléfono" autocomplete="tel"></p> <!--he utilizado required para los campos requeridos-->
+        <p>Correo electrónico: <br> <input type="text" inputmode="email" id="email" autocomplete="email"></p> <!--he utilizado inputmode="email" para que solo se puedan introducir emails en ese campo-->
+        <p>¿Eres mayor de edad?
+            <select> <!--he utilizado select para hacer una lista desplegable con dos opciones, si y no.-->
+                <option>Si</option>
+                <option>No</option>
+            </select>
+        </p> 
+        <!--Fin de la segunda parte-->
+        <hr>
+        <input type="checkbox" name="ofertas" id="ofertas" checked>Quiero recibir información sobre ofertas.<br> <!--he utilizado checked para que esta se marque por defecto-->
+        <input type="checkbox" name="c_uso" id="c_uso" required>Acepto las condiciones de uso del servicio.
+        <hr>
+        <!--Fin de la tercera parte-->
+        <input type="reset" value="Borrar"> <!--boton para borrar el formulario-->
+        <input type="submit" value="Aceptar"> <!--boton para aceptar y enviar el formulario-->
+        <!--Si se quiere conectar esta pagina con el index, solo hay que descomentar la siguiente linea: -->
+        <!--<a href="index.html"><i>Volver a inicio</i></a>-->
+
+
+
+    </form>
+</body>
+</html>
