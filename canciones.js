@@ -6,14 +6,14 @@ function añadirCancion(){
         let year=parseInt(document.getElementById("year_release").value);
         let fav_song=(document.querySelector('input[name="fav"]:checked').value);
         let repeated=false;
-        let incomplete=false
+        let incomplete=false;
     let song={
             name_song,
             author_song,
             year,
             fav_song,
         };
-        if (name_song===""|| author_song===""|| isNaN(year)){
+        if (name_song===""|| author_song===""|| isNaN(year)){ /* if any field is missing, this message will appear*/
             alert("Por favor, complete todos los campos.");
             incomplete=true;
         }
@@ -26,18 +26,18 @@ function añadirCancion(){
 
         if (repeated) {
             alert("Esa canción ya existe en tu playlist.");
-        } else if(!incomplete){
-            canciones.push(song);
+        } else if(!incomplete){ 
+            canciones.push(song); /* if all the fields are completed correctly, that song will be added to the playlist.*/
             alert("Canción añadida correctamente.");
         };
         
 };
-function mostrar(){
+function mostrar(){ /* this is my finish button*/
     if (canciones.length===0){
         alert("Por favor, introduce una cancion para mostrarla en tu playlist.") //if we dont songs in our playlist and we want to show it, this message will appear.
     } else {
     let playlist="";
-    for (let contador=0; contador<canciones.length;contador++){
+    for (let contador=0; contador<canciones.length;contador++){/* the songs are sorted by the addition order of them*/
         playlist += //the playlist is a concatenation of the songs.
             "Song " + (contador + 1) + ": " + // contador + 1 to not show something like "song 0" 
             "Title: " + canciones[contador].name_song + ", " +
@@ -45,6 +45,6 @@ function mostrar(){
             "Release year: " + canciones[contador].year + ", " +
             "Favourite: " + canciones[contador].fav_song + "\n"; // \n to show the next song´s information in a readable format, by making a carry return
     };
-    window.alert(playlist);
+    window.alert("Hay "+canciones.length+" canciones en la playlist."+ "\n"+playlist);
     };   
 };
