@@ -15,7 +15,7 @@ hr{
     margin: 20px 0;
 }
 form{
- margin: 20px auto;
+    margin: 20px auto;
     padding: 20px;
     background-color: #80ca74;
     box-shadow: 0 0 10px rgba(0, 0, 0, 1);
@@ -26,7 +26,7 @@ form{
     text-align: center;
 }   
 
-#author, #title, #year_release{
+#author, #title, #year_release, #genre{
     width: 50%;
     padding: 10px;
     margin: auto;

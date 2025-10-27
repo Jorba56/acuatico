@@ -5,6 +5,7 @@ function añadirCancion(){
         let author_song=(document.getElementById("author").value);
         let year=parseInt(document.getElementById("year_release").value);
         let fav_song=(document.querySelector('input[name="fav"]:checked').value);
+        let genre_song=(document.getElementById("genre").value);
         let repeated=false;
         let incomplete=false;
     let song={
@@ -12,13 +13,14 @@ function añadirCancion(){
             author_song,
             year,
             fav_song,
+            genre_song
         };
-        if (name_song===""|| author_song===""|| isNaN(year)){ /* if any field is missing, this message will appear*/
+        if (name_song===""|| author_song===""|| isNaN(year)||genre_song===""){ /* if any field is missing, this message will appear*/
             alert("Por favor, complete todos los campos.");
             incomplete=true;
         }
         for (let i = 0; i < canciones.length; i++) { //control for not having repeated song
-            if (canciones[i].name_song === song.name_song && canciones[i].author_song === song.author_song && canciones[i].year === song.year) {
+            if (canciones[i].name_song === song.name_song && canciones[i].author_song === song.author_song && canciones[i].year === song.year &&genre_song===canciones[i].genre_song) {
                 repeated = true;
                 break; // if one is repeated, the loop stops
             };
@@ -43,12 +45,14 @@ function mostrar(){ /* this is my finish button*/
             "Title: " + canciones[contador].name_song + ", " +
             "Author: " + canciones[contador].author_song + ", " +
             "Release year: " + canciones[contador].year + ", " +
+            "Genre: " + canciones[contador].genre_song + ", " +
             "Favourite: " + canciones[contador].fav_song + "\n"; // \n to show the next song´s information in a readable format, by making a carry return
     };
     window.alert("Hay "+canciones.length+" canciones en la playlist."+ "\n"+playlist);
     };   
 };
 function eliminarCancion(){ /* this function allows to delete a song from the playlist*/
+    if (canciones.length>0){
     let playlist="";
     for (let contador=0; contador<canciones.length;contador++){/* the songs are sorted by the addition order of them*/
         playlist += //the playlist is a concatenation of the songs.
@@ -56,11 +60,16 @@ function eliminarCancion(){ /* this function allows to delete a song from the pl
             "Title: " + canciones[contador].name_song + ", " +
             "Author: " + canciones[contador].author_song + ", " +
             "Release year: " + canciones[contador].year + ", " +
+            "Genre: " + canciones[contador].genre_song + ", " +
             "Favourite: " + canciones[contador].fav_song + "\n"; // \n to show the next song´s information in a readable format, by making a carry return
     };
     let delete_song=window.prompt("Hay "+canciones.length+" canciones en la playlist."+ "\n"+playlist +"\n"+"Escribe el número de la canción que quieres eliminar:");
     canciones.splice((delete_song-1),1); /* for simplicity, the song with the index written will be deleted*/
     /* delete_song-1 because the user sees the songs starting from 1, but in the array the first song is in the index 0*/
     window.alert("Canción eliminada correctamente.");
-    };  
+    };
+    if (canciones.length===0){
+    alert("No hay canciones en la playlist para eliminar.");
+};  
+};
 
