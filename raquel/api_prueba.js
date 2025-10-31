@@ -33,7 +33,6 @@ function printWeather(json) {
         </div>
     `;
 }
-
 function printPosts(json) {
     const container2 = document.getElementById('posts');
     const rand1to10 = (Math.floor(Math.random() * 100));
@@ -49,6 +48,5 @@ function printPosts(json) {
         <div class="post-card">
         <h2>Post by User ${user1}</h2>
             <p>${post1}</p>
-        </div>
-        `;
+        </div>`;
     }
