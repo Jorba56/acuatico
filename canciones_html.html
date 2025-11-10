@@ -9,7 +9,9 @@
 </head>
 <body>
     <h1>Playlist</h1>
+    <div id="hora"></div>
     <script src="canciones.js"></script>
+    <input type="button" id="deleteHour" value="Detener Reloj" onclick=stopHora()>
     <form>
         <hr>
         <label for="genero">
@@ -49,6 +51,7 @@
         <input type="button" id="show" value="Finalizar y mostrar playlist" onclick="mostrar()">
         <input type="button" id="delete" value="Eliminar una canción" onclick="eliminarCancion()">
         <hr>
+        
     </form>
 </body>
 </html>

@@ -1,5 +1,27 @@
 //Jorge Barriga Rubio
 let canciones=[];
+
+function mostrarHora(){
+let now=new Date();
+    let hora_Actual=0;
+    let minutos=now.getMinutes();
+    let segundos=now.getSeconds();
+    const hora = document.getElementById('hora');
+    if (now.getMinutes()<10){
+        minutos=`0${now.getMinutes()}`;
+    }
+    let horas=now.getHours();
+    if (now.getHours()<10){
+        minutos=`0${now.getHours()}`;
+    }
+    if (now.getSeconds()<10){
+        segundos=`0${now.getHours()}`;
+    }
+    hora.innerHTML = `
+        <p>Time: ${horas}:${minutos}:${segundos}</p>
+        </div>
+    `;
+}
 function añadirCancion(){
         let name_song=(document.getElementById("title").value);
         let author_song=(document.getElementById("author").value);
@@ -72,4 +94,9 @@ function eliminarCancion(){ /* this function allows to delete a song from the pl
     alert("No hay canciones en la playlist para eliminar.");
 };  
 };
-
+let reloj=setInterval(mostrarHora,1000);
+//the time is updated every second
+function stopHora(){
+    clearInterval(reloj);
+}
+//this function stops the time updating when called
