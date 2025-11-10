@@ -2,7 +2,8 @@
 let canciones=[];
 
 function mostrarHora(){
-let now=new Date();
+    reloj2=true;
+    let now=new Date();
     let hora_Actual=0;
     let minutos=now.getMinutes();
     let segundos=now.getSeconds();
@@ -15,7 +16,7 @@ let now=new Date();
         minutos=`0${now.getHours()}`;
     }
     if (now.getSeconds()<10){
-        segundos=`0${now.getHours()}`;
+        segundos=`0${now.getSeconds()}`;
     }
     hora.innerHTML = `
         <p>Time: ${horas}:${minutos}:${segundos}</p>
@@ -97,6 +98,12 @@ function eliminarCancion(){ /* this function allows to delete a song from the pl
 let reloj=setInterval(mostrarHora,1000);
 //the time is updated every second
 function stopHora(){
+    if (reloj2==true){
+    reloj2=false;
     clearInterval(reloj);
+    }
+    else{
+        reloj=setInterval(mostrarHora,1000);
+    }
 }
 //this function stops the time updating when called
