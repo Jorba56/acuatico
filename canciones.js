@@ -97,7 +97,7 @@ function eliminarCancion(){ /* this function allows to delete a song from the pl
 };
 let reloj=setInterval(mostrarHora,1000);
 //the time is updated every second
-function stopHora(){
+/*function stopHora(){
     if (reloj2==true){
     reloj2=false;
     clearInterval(reloj);
@@ -105,9 +105,20 @@ function stopHora(){
     else{
         reloj=setInterval(mostrarHora,1000);
     }
-}
+}*/
 //this function stops the time updating when called
+document.getElementById('deleteHour').onclick = function() {
+ if (reloj) {
+    clearInterval(reloj);
+    reloj = null;
+    window.alert('Reloj parado');
+    //this.disabled = true; // Desactiva el botón después de hacer clic
+ } else {
+ window.alert('El reloj ya está parado.');
+ }
+}
 
 //cambio para github y la nueva rama
 //otro cambio para github
 //tercer cambio para github
+//cuarto cambio para github
