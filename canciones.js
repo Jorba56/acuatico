@@ -107,3 +107,6 @@ function stopHora(){
     }
 }
 //this function stops the time updating when called
+
+//cambio para github y la nueva rama
+//otro cambio para github
