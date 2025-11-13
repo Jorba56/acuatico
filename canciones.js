@@ -48,3 +48,19 @@ function mostrar(){ /* this is my finish button*/
     window.alert("Hay "+canciones.length+" canciones en la playlist."+ "\n"+playlist);
     };   
 };
+function eliminarCancion(){ /* this function allows to delete a song from the playlist*/
+    let playlist="";
+    for (let contador=0; contador<canciones.length;contador++){/* the songs are sorted by the addition order of them*/
+        playlist += //the playlist is a concatenation of the songs.
+            "Song " + (contador + 1) + ": " + // contador + 1 to not show something like "song 0" 
+            "Title: " + canciones[contador].name_song + ", " +
+            "Author: " + canciones[contador].author_song + ", " +
+            "Release year: " + canciones[contador].year + ", " +
+            "Favourite: " + canciones[contador].fav_song + "\n"; // \n to show the next song´s information in a readable format, by making a carry return
+    };
+    let delete_song=window.prompt("Hay "+canciones.length+" canciones en la playlist."+ "\n"+playlist +"\n"+"Escribe el número de la canción que quieres eliminar:");
+    canciones.splice((delete_song-1),1); /* for simplicity, the song with the index written will be deleted*/
+    /* delete_song-1 because the user sees the songs starting from 1, but in the array the first song is in the index 0*/
+    window.alert("Canción eliminada correctamente.");
+    };  
+
