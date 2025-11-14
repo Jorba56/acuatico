@@ -20,37 +20,43 @@ To store a JSON string in a physical file from the browser using localStorage, i
 */
 
 // Example of a JSON object to store in localStorage
+let allData = {};
+    
+    for(let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i); // obtener la clave
+        const value = localStorage.getItem(key); // obtener el valor
+        allData[key] = value; // añadir al objeto
+    }
+
 const data = {
     name: "John",
     age: 30,
     city: "Cáceres"
 };
 
-// Convert the object to a JSON string and store it in localStorage
-localStorage.setItem('myJson', JSON.stringify(data));
-
-// Function to download the JSON from localStorage
 document.getElementById('saveToFileButton').onclick = function() {
-    // Retrieve the JSON string from localStorage
-    const jsonString = localStorage.getItem('myJson');
-    
-    if (jsonString) {
-        // Create a Blob with the content of the JSON string
+    if (Object.keys(allData).length > 0) {
+        // Convertir a JSON string
+        const jsonString = JSON.stringify(allData, null, 2);
+        
+        // Crear un Blob con el contenido
         const blob = new Blob([jsonString], { type: "application/json" });
 
-        // Create a temporary link to download the file
+        // Crear un enlace temporal para descargar
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
-        link.download = "data.json"; // File name
+        link.download = "localStorage_data.json";
 
-        // Simulate a click on the link to start the download
+        // Simular clic para descargar
         link.click();
 
-        // Release the object URL after the download
+        // Liberar el URL del objeto
         URL.revokeObjectURL(link.href);
+        
+        //alert('JSON descargado correctamente');
     } else {
-        alert('No JSON data in localStorage');
-    }
+        alert('No hay datos en localStorage');
+    };
 };
 </script>
 

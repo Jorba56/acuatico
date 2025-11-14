@@ -53,6 +53,7 @@ function añadirCancion(){
         } else if(!incomplete){ 
             canciones.push(song); /* if all the fields are completed correctly, that song will be added to the playlist.*/
             alert("Canción añadida correctamente.");
+            localStorage.setItem('playlist',JSON.stringify(playlist)); /* update the playlist in the Local Storage after adding a new song */
         };
         
 };
@@ -89,6 +90,7 @@ function eliminarCancion(){ /* this function allows to delete a song from the pl
     canciones.splice((delete_song-1),1); /* for simplicity, the song with the index written will be deleted*/
     /* delete_song-1 because the user sees the songs starting from 1, but in the array the first song is in the index 0*/
     window.alert("Canción eliminada correctamente.");
+    localStorage.setItem('playlist',JSON.stringify(playlist)); /* update the playlist in the Local Storage after deleting a song */
     };
     if (canciones.length===0){
     alert("No hay canciones en la playlist para eliminar.");
