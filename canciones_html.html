@@ -7,10 +7,10 @@
     <title>Playlist</title>
     <link rel="stylesheet" href="canciones.css">
 </head>
-<body>
+<body onload='obtenerDatos()'>
     <h1>Playlist</h1>
     <div id="hora"></div>
-    
+    <div id="tiempo"></div>
     <input type="button" id="deleteHour" value="Detener Reloj">
     <form>
         <hr>
@@ -50,8 +50,18 @@
         <input type="button" id="add" value="Añadir a la playlist" onclick="añadirCancion()">
         <input type="button" id="show" value="Finalizar y mostrar playlist" onclick="mostrar()">
         <input type="button" id="delete" value="Eliminar una canción" onclick="eliminarCancion()">
+        <input type="button" id="localstorage" value="Añadir al Local Storage">
         <hr>
         <script src="canciones.js"></script>
     </form>
 </body>
 </html>
+
+
+
+<!--    if (canciones.length===0){
+        alert("No hay canciones en la playlist para añadir al Local Storage.");
+    } else {
+    localStorage.setItem(canciones[0].name_song); //Guarda la primera canción de la playlist en el Local Storage;
+    alert("Canción guardada en el Local Storage.");
+    }-->

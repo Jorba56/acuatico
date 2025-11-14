@@ -4,7 +4,6 @@ let canciones=[];
 function mostrarHora(){
     reloj2=true;
     let now=new Date();
-    let hora_Actual=0;
     let minutos=now.getMinutes();
     let segundos=now.getSeconds();
     const hora = document.getElementById('hora');
@@ -108,15 +107,58 @@ let reloj=setInterval(mostrarHora,1000);
 }*/
 //this function stops the time updating when called
 document.getElementById('deleteHour').onclick = function() {
- if (reloj) {
-    clearInterval(reloj);
-    reloj = null;
-    window.alert('Reloj parado');
-    //this.disabled = true; // Desactiva el botón después de hacer clic
- } else {
- window.alert('El reloj ya está parado.');
- }
+    if (reloj) {
+        clearInterval(reloj);
+        reloj = null;
+        window.alert('Reloj parado');
+        this.disabled = true; // Desactiva el botón después de hacer clic, y si se quita esta línea se activa el else.
+    } else {
+    window.alert('El reloj ya está parado.');
+    }
 }
+
+function obtenerDatos(){
+fetch('https://api.open-meteo.com/v1/forecast?latitude=39.466307962945415&longitude=-6.385880542352156&hourly=temperature_2m&timezone=Europe%2FBerlin')
+        .then(response => response.json())  
+        .then(json => {
+            printWeather(json);
+        });
+    }
+function printWeather(json) {
+    const container = document.getElementById('tiempo')
+    let now=new Date();
+    let hora_Actual=0;
+    let minutos=now.getMinutes();
+    if (now.getMinutes()<10){
+        minutos=`0${now.getMinutes()}`;
+    }
+    let horas=now.getHours();
+    if (now.getHours()<10){
+        minutos=`0${now.getHours()}`;
+    }
+    tiempo.innerHTML = `
+        <div class="weather-card">
+        <h2>Weather Forecast</h2>
+        <p>Latitude: ${json.latitude}</p>
+        <p>Longitude: ${json.longitude}</p>
+        <h3>Hourly Temperature</h3>
+        <p>Time: ${horas}:${minutos}</p>
+        <p>Temperature in 2 hours: ${json.hourly.temperature_2m[horas+2]} °C</p> 
+        </div>
+    `;
+    document.getElementById('localstorage').onclick = function() {
+    //Añadir al Local Storage
+    tiempo2= json.hourly.temperature_2m[horas];
+    localStorage.setItem('tiempo',JSON.stringify(tiempo2)); //Save a test song in Local Storage
+    alert("Temperatura guardada en el Local Storage.");
+}
+}
+
+
+
+
+
+
 
 //cambio para github y la nueva rama
 //otro cambio para github
