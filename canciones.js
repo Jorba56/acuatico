@@ -1,7 +1,6 @@
 //Jorge Barriga Rubio
 let canciones=[];
 reloj2=false;
-const horaBoton = document.getElementById('horaBoton');
 horaBoton.innerHTML = `
         <div>
         <input type="button" id="deleteHour" value="Detener Reloj" onclick="stopHora()" >
@@ -13,7 +12,7 @@ function mostrarHora(){
     let minutos=now.getMinutes();
     let segundos=now.getSeconds();
     const hora = document.getElementById('hora');
-    
+    color=cambiarColorReloj();
     if (now.getMinutes()<10){
         minutos=`0${now.getMinutes()}`;
     }
@@ -25,7 +24,7 @@ function mostrarHora(){
         segundos=`0${now.getSeconds()}`;
     }
     hora.innerHTML = `
-        <p style="color:${cambiarColorReloj()};">Time: ${horas}:${minutos}:${segundos}</p>
+        <p style="color:${color};">Time: ${horas}:${minutos}:${segundos}</p>
     `;
 }
 function añadirCancion(){
@@ -116,12 +115,17 @@ function stopHora(){
     }
     else{
         reloj=setInterval(mostrarHora,1000);
+        hora2.innerHTML = `
+        <input type="button" id="deleteHour" value="Detener Reloj" onclick="stopHora()">
+    `;
     }
 }
 //this function stops the time updating when called
 
 
 function obtenerDatos(){
+
+
 fetch('https://api.open-meteo.com/v1/forecast?latitude=39.466307962945415&longitude=-6.385880542352156&hourly=temperature_2m&timezone=Europe%2FBerlin')
         .then(response => response.json())  
         .then(json => {
@@ -150,11 +154,20 @@ function printWeather(json) {
         <p>Temperature in 2 hours: ${json.hourly.temperature_2m[horas+2]} °C</p> 
         </div>
     `;
-
+canciones=localStorage.getItem(canciones);
+if (canciones===null){
+    canciones=[];
+};
+reloj2=false;
+const horaBoton = document.getElementById('horaBoton');
+color=localStorage.getItem(1);
+if (color===null){
+    color="white";
+};
 }
 
 function cambiarColorReloj(){
-    const boton = document.getElementById('horaBoton');
     let color = document.getElementById('colorReloj').value;
+    localStorage.setItem('color',color);
     return color;
 }
