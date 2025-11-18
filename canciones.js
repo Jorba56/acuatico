@@ -1,25 +1,31 @@
 //Jorge Barriga Rubio
 let canciones=[];
-
+reloj2=false;
+const horaBoton = document.getElementById('horaBoton');
+horaBoton.innerHTML = `
+        <div>
+        <input type="button" id="deleteHour" value="Detener Reloj" onclick="stopHora()" >
+        </div>
+        `;
 function mostrarHora(){
     reloj2=true;
     let now=new Date();
     let minutos=now.getMinutes();
     let segundos=now.getSeconds();
     const hora = document.getElementById('hora');
+    
     if (now.getMinutes()<10){
         minutos=`0${now.getMinutes()}`;
     }
     let horas=now.getHours();
     if (now.getHours()<10){
-        minutos=`0${now.getHours()}`;
+        horas=`0${now.getHours()}`;
     }
     if (now.getSeconds()<10){
         segundos=`0${now.getSeconds()}`;
     }
     hora.innerHTML = `
-        <p>Time: ${horas}:${minutos}:${segundos}</p>
-        </div>
+        <p style="color:${cambiarColorReloj()};">Time: ${horas}:${minutos}:${segundos}</p>
     `;
 }
 function añadirCancion(){
@@ -53,7 +59,7 @@ function añadirCancion(){
         } else if(!incomplete){ 
             canciones.push(song); /* if all the fields are completed correctly, that song will be added to the playlist.*/
             alert("Canción añadida correctamente.");
-            localStorage.setItem('playlist',JSON.stringify(playlist)); /* update the playlist in the Local Storage after adding a new song */
+            localStorage.setItem('canciones',JSON.stringify(canciones)); /* update the playlist in the Local Storage after adding a new song */
         };
         
 };
@@ -90,7 +96,7 @@ function eliminarCancion(){ /* this function allows to delete a song from the pl
     canciones.splice((delete_song-1),1); /* for simplicity, the song with the index written will be deleted*/
     /* delete_song-1 because the user sees the songs starting from 1, but in the array the first song is in the index 0*/
     window.alert("Canción eliminada correctamente.");
-    localStorage.setItem('playlist',JSON.stringify(playlist)); /* update the playlist in the Local Storage after deleting a song */
+    localStorage.setItem('canciones',JSON.stringify(canciones)); /* update the playlist in the Local Storage after deleting a song */
     };
     if (canciones.length===0){
     alert("No hay canciones en la playlist para eliminar.");
@@ -98,26 +104,22 @@ function eliminarCancion(){ /* this function allows to delete a song from the pl
 };
 let reloj=setInterval(mostrarHora,1000);
 //the time is updated every second
-/*function stopHora(){
+function stopHora(){
+    const hora2 = document.getElementById('horaBoton');
     if (reloj2==true){
-    reloj2=false;
     clearInterval(reloj);
+    reloj=null;
+    hora2.innerHTML = `
+        <input type="button" id="deleteHour" value="Iniciar Reloj" onclick="stopHora()">
+    `;
+    reloj2=false;
     }
     else{
         reloj=setInterval(mostrarHora,1000);
     }
-}*/
-//this function stops the time updating when called
-document.getElementById('deleteHour').onclick = function() {
-    if (reloj) {
-        clearInterval(reloj);
-        reloj = null;
-        window.alert('Reloj parado');
-        this.disabled = true; // Desactiva el botón después de hacer clic, y si se quita esta línea se activa el else.
-    } else {
-    window.alert('El reloj ya está parado.');
-    }
 }
+//this function stops the time updating when called
+
 
 function obtenerDatos(){
 fetch('https://api.open-meteo.com/v1/forecast?latitude=39.466307962945415&longitude=-6.385880542352156&hourly=temperature_2m&timezone=Europe%2FBerlin')
@@ -148,21 +150,11 @@ function printWeather(json) {
         <p>Temperature in 2 hours: ${json.hourly.temperature_2m[horas+2]} °C</p> 
         </div>
     `;
-    document.getElementById('localstorage').onclick = function() {
-    //Añadir al Local Storage
-    tiempo2= json.hourly.temperature_2m[horas];
-    localStorage.setItem('tiempo',JSON.stringify(tiempo2)); //Save a test song in Local Storage
-    alert("Temperatura guardada en el Local Storage.");
-}
+
 }
 
-
-
-
-
-
-
-//cambio para github y la nueva rama
-//otro cambio para github
-//tercer cambio para github
-//cuarto cambio para github
+function cambiarColorReloj(){
+    const boton = document.getElementById('horaBoton');
+    let color = document.getElementById('colorReloj').value;
+    return color;
+}

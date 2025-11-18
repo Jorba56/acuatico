@@ -10,10 +10,19 @@
 <body onload='obtenerDatos()'>
     <h1>Playlist</h1>
     <div id="hora"></div>
+    <div id="horaBoton"></div>
     <div id="tiempo"></div>
-    <input type="button" id="deleteHour" value="Detener Reloj">
+    <br>
     <form>
         <hr>
+        <p>Color del reloj: </p>
+        <select id="colorReloj">
+            <option value="white" selected>White</option>
+            <option value="black">Black</option>
+            <option value="red">Red</option>
+            <option value="blue">Azul</option>
+            <option value="green">Verde</option>
+        </select>
         <label for="genero">
             <p>Género musical: </p>
             <select id="genre">
