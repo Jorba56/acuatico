@@ -1,18 +1,30 @@
 //Jorge Barriga Rubio
-let canciones=[];
-reloj2=false;
-horaBoton.innerHTML = `
-        <div>
-        <input type="button" id="deleteHour" value="Detener Reloj" onclick="stopHora()" >
-        </div>
-        `;
+const canciones=JSON.parse(localStorage.getItem('canciones'));
+let savedPlaylist = localStorage.getItem("canciones");  
+let reloj2=false;
+color=localStorage.getItem("color");
+const hora = document.getElementById('hora');
+const nodocolor = document.getElementById('colorReloj');
+const hora2 = document.getElementById('horaBoton');
+const botonreloj = document.getElementById('botonreloj');
+
+
+const savedColor = localStorage.getItem("color");  
+if (savedColor) {
+    nodocolor.value = savedColor; 
+    hora.style.color = savedColor; 
+}
+
+
+botonreloj.addEventListener('click', stop_start_Hora);
+
+obtenerDatos();
+
 function mostrarHora(){
     reloj2=true;
     let now=new Date();
     let minutos=now.getMinutes();
     let segundos=now.getSeconds();
-    const hora = document.getElementById('hora');
-    color=cambiarColorReloj();
     if (now.getMinutes()<10){
         minutos=`0${now.getMinutes()}`;
     }
@@ -24,7 +36,7 @@ function mostrarHora(){
         segundos=`0${now.getSeconds()}`;
     }
     hora.innerHTML = `
-        <p style="color:${color};">Time: ${horas}:${minutos}:${segundos}</p>
+        <p style="color:${cambiarColorReloj()};">Time: ${horas}:${minutos}:${segundos}</p>
     `;
 }
 function añadirCancion(){
@@ -63,7 +75,8 @@ function añadirCancion(){
         
 };
 function mostrar(){ /* this is my finish button*/
-    if (canciones.length===0){
+    canciones
+    if (canciones.length<1){
         alert("Por favor, introduce una cancion para mostrarla en tu playlist.") //if we dont songs in our playlist and we want to show it, this message will appear.
     } else {
     let playlist="";
@@ -103,21 +116,23 @@ function eliminarCancion(){ /* this function allows to delete a song from the pl
 };
 let reloj=setInterval(mostrarHora,1000);
 //the time is updated every second
-function stopHora(){
-    const hora2 = document.getElementById('horaBoton');
+function stop_start_Hora(){
     if (reloj2==true){
     clearInterval(reloj);
     reloj=null;
-    hora2.innerHTML = `
+    /*hora2.innerHTML = `
         <input type="button" id="deleteHour" value="Iniciar Reloj" onclick="stopHora()">
-    `;
+    </input>`;*/
+    botonreloj.innerText = "Iniciar reloj.";
+
     reloj2=false;
     }
     else{
         reloj=setInterval(mostrarHora,1000);
-        hora2.innerHTML = `
+        /*hora2.innerHTML = `
         <input type="button" id="deleteHour" value="Detener Reloj" onclick="stopHora()">
-    `;
+    `;*/
+       botonreloj.innerText = "Detener reloj.";  
     }
 }
 //this function stops the time updating when called
@@ -160,14 +175,15 @@ if (canciones===null){
 };
 reloj2=false;
 const horaBoton = document.getElementById('horaBoton');
-color=localStorage.getItem(1);
-if (color===null){
-    color="white";
-};
 }
 
 function cambiarColorReloj(){
-    let color = document.getElementById('colorReloj').value;
-    localStorage.setItem('color',color);
-    return color;
+    let color = nodocolor.value;
+    localStorage.setItem("color",color);
+    hora.style.color=color;
+
+}
+function clear(){
+    localStorage.clear();
+    alert("Local Storage eliminado.");
 }

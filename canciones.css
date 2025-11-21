@@ -43,7 +43,7 @@ form{
 input[type="text"]:focus, input[type="number"]:focus{
     border-color: #555;
 }
-#add, #show,#delete, #deleteHour,#localstorage{
+#add, #show,#delete, #deleteHour,#localstorage,#botonreloj{
     display: block;
     padding: 10px;
     margin: 10px auto;
@@ -52,7 +52,7 @@ input[type="text"]:focus, input[type="number"]:focus{
     border: none;
     border-radius: 4px;
 }
-#add:hover, #show:hover,#delete:hover, #deleteHour:hover,#localstorage:hover{
+#add:hover, #show:hover,#delete:hover, #deleteHour:hover,#localstorage:hover, #botonreloj:hover{
     background-color: #218838;
     cursor: pointer;
 }
