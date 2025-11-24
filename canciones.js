@@ -1,23 +1,27 @@
 //Jorge Barriga Rubio
-const canciones=JSON.parse(localStorage.getItem('canciones'));
+const playlistDiv = document.getElementById("playlist");
+playlistDiv.innerHTML=`<p style="color:#555;">Aquí se mostrarán los elementos de la playlist.</p>`;
+let canciones=JSON.parse(localStorage.getItem('canciones') || '[]'); /* get the playlist from the Local Storage, or an empty array if it doesnt exist */
 let savedPlaylist = localStorage.getItem("canciones");  
+if (savedPlaylist) {
+    canciones = JSON.parse(savedPlaylist); 
+}
 let reloj2=false;
 color=localStorage.getItem("color");
 const hora = document.getElementById('hora');
 const nodocolor = document.getElementById('colorReloj');
 const hora2 = document.getElementById('horaBoton');
 const botonreloj = document.getElementById('botonreloj');
-
-
 const savedColor = localStorage.getItem("color");  
 if (savedColor) {
     nodocolor.value = savedColor; 
     hora.style.color = savedColor; 
 }
-
-
 botonreloj.addEventListener('click', stop_start_Hora);
-
+add.addEventListener('click', añadirCancion);
+eliminar.addEventListener('click', eliminarCancion);
+localstorage.addEventListener('click', clear);
+show.addEventListener('click', mostrar);
 obtenerDatos();
 
 function mostrarHora(){
@@ -39,7 +43,7 @@ function mostrarHora(){
         <p style="color:${cambiarColorReloj()};">Time: ${horas}:${minutos}:${segundos}</p>
     `;
 }
-function añadirCancion(){
+function añadirCancion(){ /* this function allows to add a new song to the playlist*/
         let name_song=(document.getElementById("title").value);
         let author_song=(document.getElementById("author").value);
         let year=parseInt(document.getElementById("year_release").value);
@@ -58,7 +62,7 @@ function añadirCancion(){
             alert("Por favor, complete todos los campos.");
             incomplete=true;
         }
-        for (let i = 0; i < canciones.length; i++) { //control for not having repeated song
+        for (let i=0; i<canciones.length;i++) { //control for not having repeated song
             if (canciones[i].name_song === song.name_song && canciones[i].author_song === song.author_song && canciones[i].year === song.year &&genre_song===canciones[i].genre_song) {
                 repeated = true;
                 break; // if one is repeated, the loop stops
@@ -75,21 +79,38 @@ function añadirCancion(){
         
 };
 function mostrar(){ /* this is my finish button*/
-    canciones
+    
     if (canciones.length<1){
-        alert("Por favor, introduce una cancion para mostrarla en tu playlist.") //if we dont songs in our playlist and we want to show it, this message will appear.
+        playlistDiv.innerHTML='<p>No hay canciones en la playlist.</p>' //if we dont songs in our playlist and we want to show it, this message will appear.
     } else {
-    let playlist="";
+    let tabla= `
+        <table class="playlist-table" border="1" cellpadding="6" cellspacing="0">
+            <tr>
+            <th>#</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Año</th>
+            <th>Género</th>
+            <th>Favorita</th>
+            </tr>
+        
+        `;
     for (let contador=0; contador<canciones.length;contador++){/* the songs are sorted by the addition order of them*/
-        playlist += //the playlist is a concatenation of the songs.
-            "Song " + (contador + 1) + ": " + // contador + 1 to not show something like "song 0" 
-            "Title: " + canciones[contador].name_song + ", " +
-            "Author: " + canciones[contador].author_song + ", " +
-            "Release year: " + canciones[contador].year + ", " +
-            "Genre: " + canciones[contador].genre_song + ", " +
-            "Favourite: " + canciones[contador].fav_song + "\n"; // \n to show the next song´s information in a readable format, by making a carry return
+        tabla += //the playlist is a concatenation of the songs.
+         `   
+            <tr>
+                <td>${contador + 1}</td>
+                <td>${canciones[contador].name_song}</td>
+                <td>${canciones[contador].author_song}</td>
+                <td>${canciones[contador].year}</td>
+                <td>${canciones[contador].genre_song}</td>
+                <td>${canciones[contador].fav_song}</td>
+            </tr>
+        `;
     };
-    window.alert("Hay "+canciones.length+" canciones en la playlist."+ "\n"+playlist);
+    playlistDiv.innerHTML =tabla+ `   
+    </table>
+    `;
     };   
 };
 function eliminarCancion(){ /* this function allows to delete a song from the playlist*/
@@ -169,10 +190,6 @@ function printWeather(json) {
         <p>Temperature in 2 hours: ${json.hourly.temperature_2m[horas+2]} °C</p> 
         </div>
     `;
-canciones=localStorage.getItem(canciones);
-if (canciones===null){
-    canciones=[];
-};
 reloj2=false;
 const horaBoton = document.getElementById('horaBoton');
 }

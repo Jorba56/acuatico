@@ -8,18 +8,21 @@
     <link rel="stylesheet" href="canciones.css">
 </head>
 <body onload='obtenerDatos()'>
+    
     <h1>Playlist</h1>
     <div class=#hora id="hora"></div>
-    <div id="horaBoton"></div>
-    
+    <div id="horaBoton"></div>   
     <div>
-        <!--<input type="button" id="deleteHour" value="Detener Reloj" onclick="stopHora()" >-->
+        
         <button type="button" id="botonreloj">Detener Reloj</button>
     </div>
-        
-    <div id="tiempo"></div>
+    <div id="arriba">
+        <div id="playlist"></div>
+        <div id="tiempo"></div> 
+    </div>
     <br>
     <form>
+        <input type="button" id="show" value="Finalizar y mostrar playlist">
         <hr>
         <p>Color del reloj: </p>
         <select id="colorReloj">
@@ -62,13 +65,13 @@
         </label>
         <br>
         <br>
-        <input type="button" id="add" value="Añadir a la playlist" onclick="añadirCancion()">
-        <input type="button" id="show" value="Finalizar y mostrar playlist" onclick="mostrar()">
-        <input type="button" id="delete" value="Eliminar una canción" onclick="eliminarCancion()">
-        <input type="button" id="localstorage" value="Eliminar Local Storage" onclick="clear()">
+        <input type="button" id="add" value="Añadir a la playlist">
+        <input type="button" id="eliminar" value="Eliminar una canción">
+        <input type="button" id="localstorage" value="Eliminar Local Storage">
         <hr>
         <script src="canciones.js"></script>
     </form>
+    
 </body>
 </html>
 
