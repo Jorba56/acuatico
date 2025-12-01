@@ -17,11 +17,7 @@ function printQuote(json) {
     `;
 }
 no funciona porque la red no carga la api*/
-let tareas=[];
-let savedtareas = localStorage.getItem("tareas");  
-if (savedtareas) {
-    tareas = JSON.parse(savedtareas); 
-}
+let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
 
 function agregarTarea(){
     const lista=document.getElementById("lista");
@@ -30,20 +26,10 @@ function agregarTarea(){
     lista.innerHTML="";
     for(let i=0; i<tareas.length;i++) {
         lista.innerHTML+=`
-        <li>${tareas[0]}</li>
-        <input type="button" id="eliminar${i}" value="eliminar tarea" onclick="eliminarTarea()">
+        <li>${tareas[i]}  <button id="eliminar" onclick="this.parentElement.remove()">Borrar Tarea</button>
+        </li>
         `;
     };
-
-}
-
-
-
-function eliminarTarea(){
-    const lista=document.getElementById("tarea");
-    
-    let tareaEliminar="";
-    tareaEliminar=lista.parentNode;
-
+    localStorage.setItem('tareas',JSON.stringify(tareas));
 }
 
