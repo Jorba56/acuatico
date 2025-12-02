@@ -1,0 +1,118 @@
+body{
+    font-family: Arial, sans-serif;
+    margin: auto;
+    width: 35%;
+    align-items: center;
+    background-color: #2e2e2e;
+}
+h1{
+    color: #ffffff;
+    text-align: center;
+    margin-top: 20px;
+}
+hr{
+    border: 1px solid #28a745;
+    margin: 20px 0;
+}
+form{
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #80ca74;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    border-radius: 5px;
+    margin: auto;
+    width: 70%;
+    display: block;
+    text-align: center;
+}   
+#hora{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+#author, #title, #year_release, #genre,#colorReloj{
+    width: 50%;
+    padding: 10px;
+    margin: auto;
+    display: block;
+    border: none;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}
+input[type="text"]:focus, input[type="number"]:focus{
+    border-color: #555;
+}
+#add, #show,#delete, #deleteHour,#localstorage,#botonreloj{
+    display: block;
+    padding: 10px;
+    margin: 10px auto;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+#add:hover, #show:hover,#delete:hover, #deleteHour:hover,#localstorage:hover, #botonreloj:hover{
+    background-color: #218838;
+    cursor: pointer;
+}
+#arriba{
+    display: flex;
+    flex-direction: row;         /* horizontal */
+    justify-content: space-between; /* espacio entre bloques */
+    align-items: flex-start;
+    gap:40%;                   /* espacio adicional entre bloques */
+    width: 80%;
+    max-width: 1200px;          /* opcional: limita ancho total */
+    margin: auto;           /* centra la fila en la página */
+    box-sizing: border-box;
+}
+
+/* bloque izquierdo */
+#tiempo{
+    flex: 0 0 45%;              /* no crece, base 58%*/
+    min-width: 240px;
+    color: #555;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #80ca74;
+    border-radius: 10px;
+    padding: 10px;
+    border: 2px solid #28a745;                 /* quitar float y margin */
+    margin-right:15%;  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);                /* eliminar margin-left fijo */
+}
+
+/* bloque derecho */
+#playlist{
+    margin-left: 0;                  /* eliminar margin-left fijo */
+    flex: 0 0 35%;              /* ancho aproximado 35% */
+    min-width: 400px;
+    height: 300px;
+    padding: 10px;
+    background-color: #80ca74;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;               /* quitar float y margin */
+}
+#playlist p{
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+}
+#playlist table{
+    text-align: center;
+    margin: auto;
+    border-radius: 5px;
+    border: solid 2px #218838;
+}
+#playlist table th{
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+}
+#playlist table td{
+    background-color: #f4f4f4;
+    padding: 10px;
+    text-align: center;
+}

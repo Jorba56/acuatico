@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" contentp="Jorge Barriga Rubio">
+    <title>Playlist</title>
+    <link rel="stylesheet" href="canciones.css">
+</head>
+<body onload='obtenerDatos()'>
+    
+    <h1>Playlist</h1>
+    <div class=#hora id="hora"></div>
+    <div id="horaBoton"></div>   
+    <div>
+        
+        <button type="button" id="botonreloj">Detener Reloj</button>
+    </div>
+    <div id="arriba">
+        <div id="playlist"></div>
+        <div id="tiempo"></div> 
+    </div>
+    <br>
+    <form>
+        <input type="button" id="show" value="Finalizar y mostrar playlist">
+        <hr>
+        <p>Color del reloj: </p>
+        <select id="colorReloj">
+            <option value="white">White</option>
+            <option value="black">Black</option>
+            <option value="red">Red</option>
+            <option value="blue">Azul</option>
+            <option value="green">Verde</option>
+        </select>
+        <label for="genero">
+            <p>Género musical: </p>
+            <select id="genre">
+            <option value="pop">Pop</option>
+            <option value="rock">Rock</option>
+            <option value="indie">Indie</option>
+            <option value="punk">Punk</option>
+            <option value="metal">Metal</option>
+            <option value="rap">Rap</option>
+            <option value="reggaeton">Reggaeton</option>
+            <option value="country">Country</option>
+        </select>
+        </label>
+        <label for="title">
+        <p>Título de la canción: </p>
+        <input type="text" id="title">
+        </label>
+        <label for="author">
+            <p>Autor de la canción: </p>
+            <input type="text" id="author" maxlength="30">
+        </label>
+        <label for="year_release">
+            <p>Año de lanzamiento: </p>
+            <input type="number" min="0" max="2025" id="year_release">
+        </label>
+        <hr>
+        <label for="fav">
+            <p>Añadir a favoritas: </p>
+            Sí<input type="radio" name="fav" id="fav" value="si" required>
+            No<input type="radio" name="fav" id="fav_no" value="no">
+        </label>
+        <br>
+        <br>
+        <input type="button" id="add" value="Añadir a la playlist">
+        <input type="button" id="eliminar" value="Eliminar una canción">
+        <input type="button" id="localstorage" value="Eliminar Local Storage">
+        <hr>
+        <script src="canciones.js"></script>
+    </form>
+    
+</body>
+</html>
+
+
+
+<!--    if (canciones.length===0){
+        alert("No hay canciones en la playlist para añadir al Local Storage.");
+    } else {
+    localStorage.setItem(canciones[0].name_song); //Guarda la primera canción de la playlist en el Local Storage;
+    alert("Canción guardada en el Local Storage.");
+    }-->
