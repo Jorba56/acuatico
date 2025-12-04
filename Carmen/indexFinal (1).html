@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jorge Barriga Rubio">
+    <title>Tareafinal1_JBR</title>
+    <style>
+    /* Estilos básicos para la página */
+    body {
+      font-family: Georgia, serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    #logo{
+        width: 95px;
+        height: 95px;
+        float: left;
+    }
+    header {
+      background-color: #ff5a44;
+      color: white;
+      padding: 10px;
+      height: 95px;
+
+    }
+    h2,h3{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    span a {
+      float:right ;
+      color: white;
+      margin-top: 5%;
+      padding: 15px;
+      text-decoration: none;
+
+    }
+    span a:hover{
+        border-radius: 3px;
+        background-color: #1a1b73;
+    }
+    section {
+      padding: 20px;
+      text-align: center;
+    }
+    .destinos, .servicios {
+      display: flex;
+      justify-content: center;
+      gap: 100px; /* para el espacio entre los bloques de destino y de servicios*/
+      flex-wrap: wrap; /* para que los elementos dentro de destinos y servicios se mantengan alineados*/
+    }
+    #bienvenida{
+        padding-top: 15px;
+        margin: auto;
+        font-family:Georgia, serif;
+        width: 60%;
+    }
+    #bienvenida>p{ /*para el texto de la parte de bienvenida*/
+        display: block;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px #1a1b73;
+        padding: 10px;
+        text-align: center;
+    }
+    #portada{ /* estilo para la imagen del avion de la portada*/
+        width: 400px;
+        height: 300px;
+        margin-top: 10px;
+        margin: auto;
+        display: block;
+        border-radius: 10px;
+    }
+    .destino, .servicio {
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px #1a1b73;
+      width: 250px;
+      height: auto;
+      padding: 15px;
+      text-align: center;
+    }
+    .destino, img{
+        width: 300px;
+        height: 200px;
+        border-radius: 5px;
+    }
+    .contacto , input, textarea{
+        border: 2px;
+        border-radius: 8px;
+        height: 30px;
+        width: 200px;
+    }
+    textarea{
+        height: 60px; /* le damos mas altura al text area*/
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .contacto,input:focus,textarea:focus{
+        border: 3px solid #ff5a44; /* :Focus para cuando seleccionamos ese campo y queremos escribir sobre él*/
+    }
+    .contacto,input:hover,textarea:hover{
+        border: 3px solid #ff5a44; /* :Focus para cuando seleccionamos ese campo y queremos escribir sobre él*/
+    }
+    footer {
+      background-color: #ff5a44;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      width: 100%;
+      bottom: 0;
+    }
+  </style> <!--fin del css-->
+</head>
+<body>
+
+  <header>
+    <div id="menu">
+      <img id="logo" src="2.png">
+      <span id="botones">
+        <a href="#destinos">Destinos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+      </span>
+    </div>
+  </header>
+
+  <div id="bienvenida">
+    <img id ="portada" src="https://blog.localadventures.mx/wp-content/uploads/2017/12/vuelos-baratos-paginas-b.jpg">
+    <p>Descubre el mundo con nosotros. En Aguas  Viajes S.L. te ayudamos a planificar tus vacaciones soñadas, desde escapadas cortas hasta aventuras inolvidables. Tu próxima aventura empieza aquí.</p>
+  </div>
+  <br>
+  <hr>
+  <section id="destinos">
+        <h2>Destinos Populares</h2>
+        <div class="destinos">
+        <div class="destino">
+            <img src="https://www.101viajes.com/sites/default/files/puesta-sol-paris.jpg" alt="París">
+            <h3>París</h3>
+            <p>La ciudad del amor.</p>
+        </div>
+        <div class="destino">
+            <img src="https://www.bekiaviajes.com/images/ciudades/portada/0000/6-h.jpg" alt="Roma">
+            <h3>Roma</h3>
+            <p>Historia y cultura.</p>
+        </div>
+        <div class="destino">
+            <img src="https://i0.wp.com/www.touristjapan.com/wp-content/uploads/2025/04/things-to-do-in-tokyo-this-weekend-scaled.jpg?fit=2560%2C1707&ssl=1" alt="Tokio">
+            <h3>Tokio</h3>
+            <p>Innovación y tradición.</p>
+            </div>
+            </div>
+            <br>
+  </section>
+    <br>
+    <br> <!-- saltos de línea para separar los elementos de la web del hr-->
+    <hr> <!--hr para diferenciar mejor las secciones de la web-->
+
+  <section id="servicios"> <!--agrupar elementos para servicios-->
+    <h2>Servicios</h2>
+    <div class="servicios">
+      <div class="servicio">
+        <h3>✈️ Vuelos ✈️</h3>
+        <p>Reserva tus vuelos con facilidad.</p>
+      </div>
+      <div class="servicio">
+        <h3>🏨 Hoteles 🏨</h3>
+        <p>Alojamientos cómodos y seguros.</p>
+      </div>
+      <div class="servicio">
+        <h3>🧭 Excursiones 🧭</h3>
+        <p>Disfruta de actividades únicas.</p>
+      </div>
+    </div>
+  </section>
+    <br>
+    <hr>
+  <section id="contacto"> <!--agrupar formulario para datos de contacto-->
+    <h2>Contacto</h2>
+    <form>
+      <input type="text" placeholder="Nombre" required><br><br>
+      <input type="email" placeholder="Email" required><br><br>
+      <textarea placeholder="Mensaje" rows="4" required></textarea><br><br>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 Aguas Viajes S.L. | Síguenos en redes sociales: @aguasviajes</p>
+  </footer>
+</body>
+</html>
