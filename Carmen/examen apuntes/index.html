@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Chuleta Examen CSS</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <header class="header-fijo">
+        <nav class="menu-principal">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li class="dropdown">
+                    <a href="#">Productos ▾</a>
+                    <ul class="submenu">
+                        <li><a href="#">Opción A</a></li>
+                        <li><a href="#">Opción B</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div style="height: 80px;"></div>
+
+    <section class="banner-hero">
+        <img src="https://via.placeholder.com/800x300" alt="Fondo" class="img-fondo">
+        <div class="texto-superpuesto">
+            <h1>Título Centrado</h1>
+            <p>Este texto está posicionado con absolute sobre la imagen.</p>
+        </div>
+    </section>
+
+    <section class="contenedor-columnas">
+        <h2>Columnas (Cajas)</h2>
+        
+        <div class="fila clearfix">
+            <div class="col-float">Columna Float 1</div>
+            <div class="col-float">Columna Float 2</div>
+            <div class="col-float">Columna Float 3</div>
+        </div>
+
+        <hr>
+
+        <div class="fila-flex">
+            <div class="col-flex">Tarjeta 1</div>
+            <div class="col-flex">Tarjeta 2</div>
+            <div class="col-flex">Tarjeta 3</div>
+        </div>
+    </section>
+
+    <section class="tablas">
+        <h2>Tabla Rayada (nth-child)</h2>
+        <table>
+            <tr><th>Nombre</th><th>Edad</th></tr>
+            <tr><td>Ana</td><td>25</td></tr>
+            <tr><td>Juan</td><td>30</td></tr>
+            <tr><td>Luis</td><td>28</td></tr>
+            <tr><td>Marta</td><td>22</td></tr>
+        </table>
+    </section>
+
+    <section class="formulario-estilo">
+        <h2>Contacto</h2>
+        <form>
+            <input type="text" placeholder="Nombre (focus cambia color)">
+            <button type="button" class="btn-animado">Enviar (Hover & Active)</button>
+        </form>
+    </section>
+
+</body>
+</html>
