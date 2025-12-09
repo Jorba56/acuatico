@@ -12,7 +12,7 @@
         <li>Careers</li>
         <li>Investors</li>
         <li>News</li>
-        <li>About Us</li>
+        <li>About Us </li>
     </ul>
     
     <script>
@@ -35,6 +35,7 @@
                 // e is the original element passed to the function
                 if (sibling.nodeType === 1 && sibling !== e) {
                     siblings.push(sibling);
+                    console.log(`While-elemento ${sibling.innerHTML}`);
                 }
                 sibling = sibling.nextSibling;
             }
