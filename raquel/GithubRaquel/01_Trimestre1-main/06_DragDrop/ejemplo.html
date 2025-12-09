@@ -17,19 +17,34 @@
       gap: 20px;
     }
 
-    #div1, #div2 {
+    #div1, #div2, #div3 {
       width: 150px;
       height: 150px;
-      border: 2px solid black;
+      border: 2px dotted rgb(118, 118, 118);
+      border-radius: 3px;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      background: #fff;
+      margin-top: 20px;
+      background: #aba7a7;
     }
 
+    h2{
+      width: 150px;
+      height: 20px;
+      position: fixed;
+    }
+
+    #div1>img, #div2>img, #div3>img{
+      width: 30px;
+      height:50px;
+    } 
+    
     img {
-      width: 50px;
+      height: 50px;
+      width: 30px;
       cursor: grab;
+      margin-top: 100px;
     }
   </style>
   <script>
@@ -67,13 +82,15 @@
 <body>
   <main>
     <!-- Contenedores de destino donde se puede soltar la imagen -->
-    <div id="div1" ondrop="soltar(event)" ondragover="allowDrop(event)"></div>
-    <div id="div2" ondrop="soltar(event)" ondragover="allowDrop(event)"></div>
+    <div id="div1" ondrop="soltar(event)" ondragover="allowDrop(event)"><h4>Frutas</h4></div>
+    <div id="div2" ondrop="soltar(event)" ondragover="allowDrop(event)"><h4>Animales</h4></div>
+    <div id="div3" ondrop="soltar(event)" ondragover="allowDrop(event)"><h4>Colores</h4></div>
   </main>
 
   <footer>
     <!-- Imagen que se puede arrastrar -->
-    <img id="drag1" src="icono.jpg" draggable="true" ondragstart="drag(event)">
+    <img id="drag1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf4KYTiv8lXfTHGeQ4D9nRFR9Px-kd61h42g&s" draggable="true" ondragstart="drag(event)">
+    <img id="drag2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf4KYTiv8lXfTHGeQ4D9nRFR9Px-kd61h42g&s" draggable="true" ondragstart="drag(event)">
   </footer>
 </body>
 </html>
