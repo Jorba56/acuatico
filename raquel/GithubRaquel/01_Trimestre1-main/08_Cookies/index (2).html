@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cookies Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .section { margin-bottom: 20px; }
+    .output { background: #f4f4f4; padding: 5px; margin-top: 5px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+  <h1>Cookies Demo</h1>
+
+  <!-- CREATE / UPDATE COOKIE -->
+  <div class="section">
+    <h2>1. Create or Update Cookie</h2>
+    <button id="createCookie">Create Cookie 'username'</button>
+    <button id="updateCookie">Update Cookie 'username'</button>
+    <div id="cookieCreate" class="output"></div>
+  </div>
+
+  <!-- READ COOKIE -->
+  <div class="section">
+    <h2>2. Read Cookies</h2>
+    <button id="showAllCookies">Show All Cookies</button>
+    <button id="showCookie">Show Cookie 'username'</button>
+    <div id="cookieRead" class="output"></div>
+  </div>
+
+  <!-- DELETE COOKIE -->
+  <div class="section">
+    <h2>3. Delete Cookie</h2>
+    <button id="deleteCookie">Delete Cookie 'username'</button>
+    <div id="cookieDelete" class="output"></div>
+  </div>
+
+  <!-- External JS -->
+  <script src="cookies.js"></script>
+</body>
+</html>
