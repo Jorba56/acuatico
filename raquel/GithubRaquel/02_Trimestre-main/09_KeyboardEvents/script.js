@@ -18,6 +18,7 @@ var people = [
 var searchInput = document.getElementById("searchInput");
 var results = document.getElementById("results");
 var keyInfo = document.getElementById("keyInfo");
+var keyDown = document.getElementById("keyDown");
 
 // Function to display results in the list element 
 //@filteredPeople: array of person objects to display
@@ -55,7 +56,7 @@ searchInput.addEventListener("keyup", filterData);
 
 // Event: on keydown
 searchInput.addEventListener("keydown", function(event) {
-  keyInfo.innerHTML = "Key pressed: " + event.key;
+  keyDown.innerHTML = "<p>Key pressed: " + event.key+"</p>";
 });
 
 // Event: while key is pressed (older method)
