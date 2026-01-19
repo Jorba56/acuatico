@@ -1,108 +1,329 @@
+/* --- VARIABLES Y CONFIGURACIÓN GENERAL --- */
+:root {
+    --primary: #4f46e5;      /* Índigo moderno */
+    --primary-hover: #4338ca;
+    --secondary: #10b981;    /* Verde esmeralda para acciones positivas */
+    --danger: #ef4444;       /* Rojo suave para errores/borrar */
+    --dark: #1f2937;         /* Gris muy oscuro para texto */
+    --gray: #6b7280;         /* Gris medio */
+    --light-bg: #f3f4f6;     /* Fondo general suave */
+    --white: #ffffff;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Georgia, serif;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: var(--light-bg);
+    color: var(--dark);
+    line-height: 1.6;
 }
-/* Header y Logo */
+
+/* --- HEADER Y NAVEGACIÓN --- */
 header {
-    background-color: #ff5a44;
-    color: white;
-    width: 100%;
-    height: 90px;
-    padding: 10px 0;
-    margin-bottom: 20px;
-    text-align: center;
+    background: var(--white);
+    color: var(--dark);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
-/* Tipografías */
-h1, h2, h3 {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #1a1b73; /* He añadido el color corporativo a los títulos */
-    text-align: center;
-}
-/* Menú de navegación */
-#titulo {
-    margin:auto;
-    text-align: center;
-}
+
 #titulo h2 {
+    margin: 0;
+    color: var(--primary);
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+/* --- MENSAJES Y BIENVENIDA --- */
+/* Convertimos el h3 suelto en un banner de bienvenida */
+body > h3 {
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary), #818cf8);
     color: white;
-    padding: 8px;
-    text-decoration: none;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
+    padding: 40px 20px;
+    margin: 0;
+    font-weight: 400;
+    font-size: 1.2rem;
 }
-#mensaje{
+
+/* Separadores */
+hr {
+    border: 0;
+    height: 1px;
+    background: #e5e7eb;
+    margin: 2rem 0;
+}
+
+/* --- BARRA DE BÚSQUEDA --- */
+#mensaje {
+    margin: -30px auto 40px; /* Sube para solaparse con el banner azul */
     text-align: center;
-    margin-bottom: 20px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    z-index: 10;
 }
+
+#mensaje h2 {
+    display: none; /* Ocultamos el título "Busca tu producto" para limpiar la vista */
+}
+
 input[type="text"] {
-    width: 80%;
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+    margin-top: 30px;
+    width: 100%;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra flotante */
+    transition: transform 0.3s ease;
 }
-/* Secciones Generales */
+
+input[type="text"]:focus {
+    outline: 2px solid var(--primary);
+    transform: scale(1.02);
+}
+
+/* --- SECCIONES Y TÍTULOS --- */
 section {
-    padding: 20px;
-    text-align: center;
-}
-.contenedor-flex {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-#productos{
-    margin-top: 50px;
-}
-/* Tarjetas (usado en destinos y servicios) */
-.tarjeta {
+    padding: 0 20px;
+    max-width: 1200px;
     margin: auto;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px #1a1b73;
-    width: 300px;
-    padding: 15px;
+}
+
+h2, h3 {
+    color: var(--dark);
     text-align: center;
-    display:inline-block;
-    margin-bottom: 8px;
+    margin-bottom: 1.5rem;
+}
+
+/* --- GRID DE PRODUCTOS --- */
+#productos2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Tarjetas de Producto */
+.tarjeta {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    width: 280px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .tarjeta img {
-    width: 100%; /* Ajuste para que la imagen ocupe el ancho de la tarjeta */
-    height: 250px;
-    object-fit: cover;
-    border-radius: 5px;
+    width: 100%;
+    height: 180px;
+    object-fit: contain; /* Para que se vean completos los productos tecno */
+    margin-bottom: 15px;
 }
-/* Elementos específicos del Index */
 
-#carrito{
-    text-align: center;
+.tarjeta h3 {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    min-height: 50px; /* Para alinear títulos de diferente longitud */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-/* Formulario */
 
+.tarjeta p#precio {
+    font-size: 1.4rem;
+    color: var(--primary);
+    font-weight: bold;
+    margin: 5px 0 15px;
+}
+
+/* Botones Generales */
 button {
-    background-color: #1a1b73;
+    background-color: var(--primary);
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px;
+    font-weight: 600;
+    transition: background 0.2s;
+    width: 100%; /* Botones ocupan el ancho de la tarjeta */
 }
+
 button:hover {
-    background-color: #ff5a44;
+    background-color: var(--primary-hover);
 }
-/* Footer */
-footer {
-    background-color: #ff5a44;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 50px;
+
+/* --- CARRITO --- */
+#carrito {
+    background-color: var(--white);
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 800px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+#carrito h3 {
+    border-bottom: 2px solid var(--light-bg);
+    padding-bottom: 15px;
+}
+
+/* Estilos específicos para items del carrito */
+#carrito2 .tarjeta {
+    width: 100%; /* En el carrito, las tarjetas ocupan el ancho disponible */
+    flex-direction: row; /* Elementos en línea */
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 15px;
+    text-align: left;
+    height: auto;
+}
+
+#carrito2 .tarjeta div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
     width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Para móviles */
+}
+
+#carrito2 button {
+    width: 40px; /* Botones cuadrados pequeños */
+    height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#carrito2 button[id^="restar"] {
+    background-color: var(--white);
+    border: 2px solid var(--danger);
+    color: var(--danger);
+}
+#carrito2 button[id^="restar"]:hover {
+    background-color: var(--danger);
+    color: white;
+}
+
+/* --- ZONA USUARIO (LOGIN Y CAJA) --- */
+#zona-usuario {
+    background: var(--white);
+    max-width: 450px;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    border: 1px solid #e5e7eb;
+}
+
+#zona-usuario h3 {
+    color: var(--dark);
+    margin-top: 0;
+}
+
+#login-container, #caja-container {
+    width: 100%;
+}
+
+/* Inputs del login/caja */
+#zona-usuario input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background-color: #f9fafb;
+}
+
+#btnLogin {
+    margin-top: 15px;
+    background-color: var(--dark);
+}
+
+/* Zona de Pago (Caja) */
+#caja-container {
+    background-color: transparent !important; /* Sobrescribimos el estilo inline del HTML */
+    border: none !important;
+    padding: 0 !important;
+}
+
+#caja-container input#cupon {
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-color: var(--primary);
+}
+
+#btnComprarFinal {
+    background-color: var(--secondary) !important;
+    margin-top: 20px;
+    box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+}
+
+#btnComprarFinal:hover {
+    background-color: #059669 !important;
+    transform: translateY(-2px);
+}
+
+/* --- FOOTER --- */
+footer {
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 60px;
+    color: var(--gray);
+    font-size: 0.9rem;
+    border-top: 1px solid #e5e7eb;
+    background-color: var(--white);
+}
+
+/* --- RESPONSIVE (MÓVIL) --- */
+@media (max-width: 768px) {
+    #productos2 {
+        gap: 15px;
+    }
+    
+    .tarjeta {
+        width: 100%; /* En móvil ocupan todo el ancho */
+        max-width: 320px; /* Pero no se hacen gigantes */
+    }
+    
+    #carrito2 .tarjeta div {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    #carrito2 button {
+        width: 100%; /* Botones anchos en móvil para el carrito */
+        border-radius: 8px;
+    }
 }
