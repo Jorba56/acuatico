@@ -29,6 +29,5 @@ export let productos=[
             precio:19.95,
             imagen:"https://img.pccomponentes.com/articles/1084/10844115/4862-cool-office-equipo-altavoces-para-pc-6w-especificaciones.jpg",
         }
-
     ]
 export default productos
