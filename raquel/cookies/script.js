@@ -235,13 +235,12 @@ btnComprarFinal.addEventListener('click', () => {
     if (carro.length === 0) {
         alert("Tu carrito está vacío. Añade productos antes de pagar.");
     } else {
-        let mensaje = "¡Compra realizada con éxito!";
-        coupons.forEach(cupon => {
+        alert("¡Compra realizada con éxito!");
             if(cupon){
-             mensaje += "\nHas ahorrado un"+cupon.discount+"% en tu compra.";
+             alert("Has ahorrado un "+(valor*100)+"% en tu compra.");
+            };
         }
-        alert(mensaje);
-        });
+        
         
 
         // Reset completo
@@ -250,7 +249,6 @@ btnComprarFinal.addEventListener('click', () => {
         cupon = false;
         inputCupon.value = "";
         pintarCarro(carro);
-    }
 });
 
 // -----------------------------
