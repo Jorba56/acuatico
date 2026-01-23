@@ -22,6 +22,19 @@ const nombreUsuarioSpan = document.getElementById('nombre-usuario');
 const btnComprarFinal = document.getElementById('btnComprarFinal');
 const inputCupon = document.getElementById('cupon');
 const addDesc = document.getElementById('aplicarDes'); // Asegúrate de tener este botón en el HTML
+let valor=0;
+// Users list
+const users = [
+    { username: "alumno", password: "agora" },
+    { username: "admin", password: "1234" }
+];
+
+// Coupons list
+const cupones = [
+    { code: "DISCOUNT10", discount: 10 },
+    { code: "CHRISTMAS20", discount: 20 },
+    { code: "BLACKFRIDAY30", discount: 30 }
+];
 
 // ----------------------------------------------------------------
 // 1. INICIALIZACIÓN
@@ -120,8 +133,8 @@ function pintarCarro(carro){
         // 2. Aplicamos descuento si el cupón es válido
         let textoDescuento = "";
         if (cupon) {
-            totalNumerico = totalNumerico * 0.90; // Aplicamos el 10%
-            textoDescuento = " <span style='color:green; font-weight:bold;'>(10% DTO)</span>";
+            totalNumerico = totalNumerico * (1-valor); 
+            textoDescuento = " <span style='color:green; font-weight:bold;'>("+valor*100+"% DTO)</span>";
         }
 
         // 3. Convertimos a texto (string) al final para mostrarlo
@@ -168,13 +181,19 @@ function actualizarCarro(carro){
 btnLogin.addEventListener('click', () => {
     const user = userInput.value.trim();
     const pass = passInput.value.trim();
-
-    if (user !== "" && pass !== "") {
+    let login=false;
+    for (let i=0;i<users.length;i++){
+        if (user ===users[i].username && pass === users[i].password) {
+            login=true;
+        } else {
+            login=false;
+        }
+    }if(login){
         loginContainer.style.display = 'none';
         cajaContainer.style.display = 'block';
         nombreUsuarioSpan.textContent = user;
         errorLogin.style.display = 'none';
-    } else {
+    }else{
         errorLogin.style.display = 'block';
     }
 });
@@ -183,26 +202,32 @@ btnLogin.addEventListener('click', () => {
 if (addDesc) { // Verificamos que el botón existe para evitar errores
     addDesc.addEventListener('click', () => {
         const codigoIntroducido = inputCupon.value.trim();
-
+        let cupon_valido="";
         if (carro.length === 0) {
             alert("Añade productos antes de usar un cupón.");
             return;
         }
-
-        if (codigoIntroducido === CODIGO_CUPON) {
-            if (!cupon) {
-                cupon = true;
-                alert(`¡Cupón '${CODIGO_CUPON}' aplicado correctamente!`);
-                pintarCarro(carro); // Actualizamos el precio visualmente
+         for (let i=0;i<cupones.length;i++){
+            if (codigoIntroducido.toLowerCase().trim() === cupones[i].code.toLowerCase().trim()) {
+                /*alert(`¡Cupón '${cupones[i].code}' aplicado correctamente!`);
+                pintarCarro(carro); // Actualizamos el precio visualmente*/
+                cupon_valido=cupones[i].code;
+                valor=(cupones[i].discount/100);
+                cupon=true;
             } else {
-                alert("El cupón ya está aplicado.");
-            }
-        } else {
+                /*alert("El código de cupón no es válido.");
+                pintarCarro(carro);*/
+                cupon=false;
+            };
+        };
+        if (cupon){
+            alert(`¡Cupón '${cupon_valido}' aplicado correctamente!`);
+            pintarCarro(carro); // Actualizamos el precio visualmente
+        }else{
             alert("El código de cupón no es válido.");
-            cupon = false; // Opcional: quitar descuento si se equivoca
             pintarCarro(carro);
         }
-    });
+    })
 }
 
 // C) Botón Finalizar Compra
@@ -211,10 +236,13 @@ btnComprarFinal.addEventListener('click', () => {
         alert("Tu carrito está vacío. Añade productos antes de pagar.");
     } else {
         let mensaje = "¡Compra realizada con éxito!";
-        if(cupon){
-             mensaje += "\nHas ahorrado un 10% en tu compra.";
+        coupons.forEach(cupon => {
+            if(cupon){
+             mensaje += "\nHas ahorrado un"+cupon.discount+"% en tu compra.";
         }
         alert(mensaje);
+        });
+        
 
         // Reset completo
         carro.forEach(p => p.cantidad = 0); // Reseteamos cantidades de los objetos originales
@@ -222,5 +250,80 @@ btnComprarFinal.addEventListener('click', () => {
         cupon = false;
         inputCupon.value = "";
         pintarCarro(carro);
+    }
+});
+
+// -----------------------------
+// IMPORT MODULES
+// -----------------------------
+// Import Express framework and CORS middleware
+const express = require("express");
+// CORS is used to allow cross-origin requests
+const cors = require("cors");
+
+// -----------------------------
+// CREATE EXPRESS APP
+// -----------------------------
+const app = express();
+
+// Enable CORS so the frontend can connect
+app.use(cors());
+
+// Enable JSON parsing in request bodies
+app.use(express.json());
+
+// -----------------------------
+// DATABASE SIMULATION
+// -----------------------------
+
+
+// -----------------------------
+// LOGIN ENDPOINT
+// -----------------------------
+// Handle POST requests to /login
+app.post("/login", (req, res) => {
+
+    // Get username and password from request body
+    const { username, password } = req.body;
+
+  // Check if the user exists in the list
+    let validUser = null;
+
+    for (let i = 0; i < users.length; i++) {
+            if (users[i].username === username && users[i].password === password) {
+                validUser = users[i];
+                break; // stop the loop once we find the user
+            }
+        }
+
+    if (validUser) 
+        res.json({ ok: true });
+     else 
+        res.json({ ok: false, message: "Incorrect username or password" });
+    
+});
+
+// -----------------------------
+// COUPON VALIDATION ENDPOINT
+// -----------------------------
+app.get("/coupon/:code", (req, res) => {
+
+    // Get the coupon code from URL and make it uppercase
+    const code = req.params.code.toUpperCase();
+
+    // Check if the coupon exists in the list
+    let couponFound  = null;
+
+    for (let i = 0; i < coupons.length; i++) {
+        if (coupons[i].code === code) {
+            couponFound = coupons[i];
+            break; // stop the loop once we find the coupon
+        }
+    }
+
+    if (couponFound) {
+        res.json({ valid: true, discount: couponFound.discount });
+    } else {
+        res.json({ valid: false });
     }
 });
