@@ -3,6 +3,8 @@ import { product } from './product.js';
 
 // Digital products like ebooks or courses
 export class digitalproduct extends product {
+  //add here the missing code: property filesize over 0
+  //then a setter for filesize and a getter also
   constructor(id, name, price, stock, fileSize) {
     super(id, name, price, stock); 
     this.fileSize = fileSize;      

@@ -12,6 +12,7 @@ async function login() {
 
     try {
         // Send a POST request to the server with user data
+        // Fetch API is used to make HTTP requests
         const response = await fetch("http://localhost:3000/login", {
             method: "POST",
             headers: {
