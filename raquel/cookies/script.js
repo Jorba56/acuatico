@@ -30,7 +30,7 @@ const users = [
 ];
 
 // Coupons list
-const cupones = [
+const cupons = [
     { code: "DISCOUNT10", discount: 10 },
     { code: "CHRISTMAS20", discount: 20 },
     { code: "BLACKFRIDAY30", discount: 30 }
@@ -200,25 +200,27 @@ btnLogin.addEventListener('click', () => {
 
 // B) Botón de Aplicar Cupón (INDEPENDIENTE)
 if (addDesc) { // Verificamos que el botón existe para evitar errores
-    addDesc.addEventListener('click', () => {
+    addDesc.addEventListener('click', (cupons) => {
         const codigoIntroducido = inputCupon.value.trim();
         let cupon_valido="";
         if (carro.length === 0) {
             alert("Añade productos antes de usar un cupón.");
             return;
         }
-         for (let i=0;i<cupones.length;i++){
-            if (codigoIntroducido.toLowerCase().trim() === cupones[i].code.toLowerCase().trim()) {
+         cupons.forEach(cuponArr => {
+             if (codigoIntroducido.toLowerCase().trim() === cuponArr.code.toLowerCase().trim()) {
                 /*alert(`¡Cupón '${cupones[i].code}' aplicado correctamente!`);
                 pintarCarro(carro); // Actualizamos el precio visualmente*/
-                cupon_valido=cupones[i].code;
-                valor=(cupones[i].discount/100);
+                cupon_valido=cuponArr.code;
+                valor=(cuponArr.discount/100);
                 cupon=true;
             } else {
                 /*alert("El código de cupón no es válido.");
                 pintarCarro(carro);*/
                 cupon=false;
             };
+         });{
+            
         };
         if (cupon){
             alert(`¡Cupón '${cupon_valido}' aplicado correctamente!`);
