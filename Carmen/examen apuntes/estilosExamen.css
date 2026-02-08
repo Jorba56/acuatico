@@ -1,0 +1,219 @@
+/* =========================================
+   RESET BÁSICO (Obligatorio)
+   ========================================= */
+* {
+    box-sizing: border-box; /* Vital para que los paddings no rompan el sitio */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background-color: #f4f4f4;
+    padding-bottom: 200px;
+}
+
+h2 {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    margin-top: 40px;
+}
+
+/* Imágenes responsive por defecto */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* =========================================
+   1. MÉTODO TRADICIONAL (FLOATS)
+   (Para el ejercicio de la zapatilla/producto)
+   ========================================= */
+
+.contenedor-float {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+    max-width: 500px; /* Ancho típico de una tarjeta */
+    margin-bottom: 20px;
+    
+    /* TRUCO CLEARFIX: Obligatorio si usas floats dentro.
+       Si no pones esto o overflow:hidden, el padre se queda con altura 0. */
+    overflow: hidden; 
+}
+
+.img-float {
+    float: left; /* Manda la imagen a la izquierda */
+    width: 120px;
+    margin-right: 20px; /* Separación con el texto */
+    border: 1px solid #000;
+}
+
+.info-float {
+    float: left; /* O right, según pida el ejercicio */
+    width: calc(100% - 140px); /* El resto del ancho (Total - ancho img - margen) */
+}
+
+/* El botón de cerrar (X) que suele flotar a la derecha */
+.btn-cerrar {
+    float: right;
+    border: 1px solid black;
+    background: transparent;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+/* IMPORTANTE: Cuando termines de usar floats en una lista, 
+   el siguiente elemento debe tener "clear: both" si se monta. */
+
+/* =========================================
+   2. GRID AREAS (LAYOUT DE PÁGINA)
+   (Para el ejercicio 05 de estructura)
+   ========================================= */
+
+.layout-grid {
+    display: grid;
+    
+    /* DEFINIR COLUMNAS Y FILAS */
+    /* Ejercicio pide: Columna izq 200px, derecha 1fr */
+    grid-template-columns: 200px 1fr; 
+    grid-template-rows: auto auto 1fr auto; /* Header, Nav, Main, Footer */
+    
+    /* DEFINIR EL DIBUJO (EL MAPA) */
+    /* Cada palabra es una celda. Si quieres hueco vacío usa un punto (.) */
+    grid-template-areas:
+        "header header"  /* Header ocupa todo el ancho */
+        "nav    nav"     /* Nav ocupa todo el ancho */
+        "aside  main"    /* Aside a la izquierda, Main a la derecha */
+        "footer footer"; /* Footer ocupa todo el ancho */
+    
+    gap: 15px; /* Espacio entre huecos */
+    height: 400px; /* Altura para el ejemplo */
+    border: 2px solid #333;
+}
+
+/* ASIGNAR ÁREAS A LOS HIJOS (Obligatorio para que funcione el mapa) */
+.header { grid-area: header; background: #ffcccc; padding: 20px; }
+.nav    { grid-area: nav;    background: #ccffcc; padding: 10px; }
+.main   { grid-area: main;   background: #ccccff; padding: 20px; }
+.aside  { grid-area: aside;  background: #ffffcc; padding: 20px; }
+.footer { grid-area: footer; background: #cccccc; padding: 10px; text-align: center;}
+
+/* RESPONSIVE PARA GRID AREAS (Móvil) */
+@media (max-width: 600px) {
+    .layout-grid {
+        /* En móvil, todo en una columna */
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "nav"
+            "main"
+            "aside"  /* El aside baja debajo del main en móvil */
+            "footer";
+    }
+}
+
+/* =========================================
+   3. MENÚ DE NAVEGACIÓN (FLEXBOX)
+   (Para el ejercicio WebMenu y Blog)
+   ========================================= */
+
+.menu-principal {
+    display: flex;
+    justify-content: space-between; /* Logo a un lado, enlaces al otro */
+    align-items: center; /* Centrado vertical */
+    background-color: #333;
+    padding: 10px 20px;
+    color: white;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.enlaces {
+    display: flex; /* Para poner los li en fila */
+    list-style: none; /* Quitar los puntitos de la lista */
+    gap: 20px; /* Separación entre enlaces */
+}
+
+.enlaces a {
+    text-decoration: none; /* Quitar subrayado */
+    color: white;
+    font-weight: bold;
+    /* Transición suave para el hover (Ejercicio 4) */
+    transition: color 0.3s; 
+}
+
+.enlaces a:hover {
+    color: #ff5a44; /* Cambio de color al pasar ratón */
+}
+
+/* =========================================
+   4. FLEXBOX & BOTONES
+   ========================================= */
+
+.flex-padre {
+    display: flex;
+    flex-wrap: wrap; /* Si no caben, bajan */
+    gap: 10px;
+    padding: 20px;
+    background: #ddd;
+    justify-content: center;
+}
+
+.item {
+    background: coral;
+    padding: 20px;
+    color: white;
+    border: 1px solid black;
+}
+
+/* Botón Call to Action (Ejercicio WebMenu) */
+.btn-call-to-action {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 15px 40px; /* Relleno gordo */
+    font-size: 1em;
+    cursor: pointer;
+    /* Transición para el fondo */
+    transition: background 0.5s linear;
+}
+
+.btn-call-to-action:hover {
+    background-color: #4A4959; /* Color grisáceo al pasar ratón */
+}
+
+/* =========================================
+   5. RESPONSIVE BÁSICO (Media Queries)
+   ========================================= */
+
+.caja-responsive {
+    background-color: lightgreen;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+/* PANTALLAS PEQUEÑAS (Móvil < 768px) */
+@media (max-width: 768px) {
+    .caja-responsive {
+        background-color: lightcoral;
+    }
+    
+    /* Ejemplo: En móvil el menú se suele poner en columna */
+    .menu-principal {
+        flex-direction: column;
+    }
+    .enlaces {
+        margin-top: 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+}

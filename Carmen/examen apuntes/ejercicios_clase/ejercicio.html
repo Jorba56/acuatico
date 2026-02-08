@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO EN UNO - Examen CSS</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* ======================================================
+           ESTILOS GENERALES (Para que se vea bien la hoja)
+           ====================================================== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding-bottom: 100px; }
+        
+        /* SEPARADOR VISUAL ENTRE EJERCICIOS (Solo para que tú lo veas claro) */
+        .separador-ejercicio {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin: 50px 0 20px 0;
+            border-top: 5px solid red;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Imágenes responsive genéricas */
+        img { max-width: 100%; height: auto; display: block; }
+
+
+        /* ======================================================
+           CSS EJERCICIO 1: BLOG (RESPONSIVE MAIN + ASIDE)
+           ====================================================== */
+        .blog-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+        }
+
+        /* Cabecera y Menú */
+        .blog-header { background: #eee; padding: 20px; text-align: center; margin-bottom: 20px; }
+        .blog-nav ul { list-style: none; padding: 0; text-align: center; }
+        .blog-nav li { display: inline-block; margin: 0 10px; }
+        .blog-nav a { text-decoration: none; color: #333; font-weight: bold; font-size: 1.2em; }
+
+        /* Contenedor Flex para las columnas */
+        .blog-content {
+            display: flex; /* Flexbox para poner Main y Aside lado a lado */
+            gap: 20px;
+        }
+
+        .blog-main {
+            flex: 3; /* Ocupa 3 partes del espacio (75%) */
+            background: #f9f9f9;
+            padding: 20px;
+        }
+
+        .blog-aside {
+            flex: 1; /* Ocupa 1 parte del espacio (25%) */
+            background: #ddd;
+            padding: 20px;
+        }
+
+        .blog-footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            clear: both;
+        }
+
+        /* MEDIA QUERY: Cuando la pantalla es menor a 800px (Móvil) */
+        @media (max-width: 800px) {
+            .blog-content {
+                flex-direction: column; /* Cambia a columna: uno debajo de otro */
+            }
+            .blog-aside {
+                order: -1; /* OPCIONAL: Si quieres que el aside suba arriba en móvil */
+            }
+        }
+
+
+        /* ======================================================
+           CSS EJERCICIO 2: PRODUCTO (MÉTODO TRADICIONAL FLOATS)
+           ====================================================== */
+        /* Contenedor de la tarjeta */
+        .prod-article {
+            width: 400px;
+            background-color: #F7F3F3;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            /* CLEARFIX: Truco obligatorio para que el padre tenga altura con floats */
+            overflow: hidden; 
+        }
+
+        /* Imagen flotando a la izquierda */
+        .prod-img {
+            float: left;
+            width: 120px; /* Ajusta según necesites */
+            padding: 20px;
+        }
+
+        /* Datos flotando a la derecha */
+        .prod-datos {
+            float: right;
+            width: 250px; /* Resto del ancho aprox */
+            padding: 20px;
+        }
+
+        /* Botón cerrar (X) */
+        .prod-borrar {
+            float: right;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 2px 6px;
+            cursor: pointer;
+            margin-top: -10px; /* Ajuste fino */
+        }
+
+        .prod-nombre {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            clear: right; /* Asegura que baje debajo de la X si se chocan */
+        }
+
+        .prod-precio {
+            color: #666;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        /* Limpieza de floats al final (por seguridad) */
+        .clear { clear: both; }
+
+
+        /* ======================================================
+           CSS EJERCICIO 3: MAQUETACIÓN FLEX (GALERÍA)
+           ====================================================== */
+        .flex-page-header {
+            display: flex;
+            justify-content: space-between; /* Logo a un lado, menú al otro */
+            align-items: center;
+            background-color: #222;
+            color: white;
+            padding: 10px 40px;
+        }
+
+        .flex-menu ul { display: flex; list-style: none; gap: 20px; }
+        .flex-menu a { color: white; text-decoration: none; }
+
+        .flex-hero {
+            text-align: center;
+            padding: 40px;
+            background-color: #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        /* Galería Flex con Wrap */
+        .flex-gallery {
+            display: flex;
+            flex-wrap: wrap; /* IMPORTANTE: Permite que las fotos bajen de línea */
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .flex-card {
+            width: 200px; /* Ancho fijo para las tarjetas */
+            background: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+
+        /* ======================================================
+           CSS EJERCICIO 4: WEBMENU (TRANSICIONES Y ICONOS)
+           ====================================================== */
+        /* Call To Action (La caja grande negra) */
+        .cta-box {
+            background-color: #1C1D22;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin: 20px 0;
+        }
+
+        .cta-box h2 { background: none; color: white; margin-bottom: 20px; border: none; }
+        .cta-box p { max-width: 700px; margin: 0 auto 30px auto; line-height: 1.5; }
+
+        /* EL BOTÓN CON TRANSICIÓN (Lo que pide el ejercicio) */
+        .btn-transition {
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+            padding: 15px 40px;
+            font-size: 1em;
+            cursor: pointer;
+            /* PROPIEDAD CLAVE: */
+            transition: background-color 0.5s linear, color 0.5s; 
+        }
+
+        /* Efecto Hover */
+        .btn-transition:hover {
+            background-color: #4A4959;
+            color: #ffcccc;
+        }
+
+        /* Info Box (Los iconos) */
+        .info-flex {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 40px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .info-item { max-width: 250px; }
+        .info-item i { font-size: 3em; margin-bottom: 15px; color: #333; }
+
+
+        /* ======================================================
+           CSS EJERCICIO 5: GRID AREAS (ESTRUCTURA COMPLETA)
+           ====================================================== */
+        .grid-layout {
+            display: grid;
+            /* Columnas: Izquierda 200px, Derecha el resto (1fr) */
+            grid-template-columns: 200px 1fr;
+            /* Filas: Automáticas según contenido */
+            grid-template-rows: auto auto 1fr auto;
+            /* EL MAPA DE ÁREAS */
+            grid-template-areas: 
+                "header header"
+                "nav    nav"
+                "aside  main"
+                "footer footer";
+            
+            gap: 15px;
+            background-color: #fff;
+            padding: 10px;
+            border: 2px solid #333;
+        }
+
+        /* Asignamos nombres a las cajas */
+        .g-header { grid-area: header; background: #ffcccc; padding: 20px; text-align: center; }
+        .g-nav    { grid-area: nav;    background: #ccffcc; padding: 10px; text-align: center; }
+        .g-main   { grid-area: main;   background: #ccccff; padding: 40px; }
+        .g-aside  { grid-area: aside;  background: #ffffcc; padding: 20px; }
+        .g-footer { grid-area: footer; background: #cccccc; padding: 10px; text-align: center; }
+
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center; padding: 20px;">EXAMEN CSS: TODOS LOS EJERCICIOS</h1>
+    <p style="text-align: center;">Usa <b>Ctrl + F</b> para buscar el ejercicio que necesites.</p>
+
+    
+    <div class="separador-ejercicio">EJERCICIO 1: BLOG (Responsive Flex)</div>
+
+    <div class="blog-container">
+        <header class="blog-header">
+            <h1>Mi Blog Personal</h1>
+            <nav class="blog-nav">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Servicios</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="blog-content">
+            <main class="blog-main">
+                <img src="https://via.placeholder.com/800x300" alt="Imagen Blog">
+                <h2>Título del Artículo</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et nisi facilis facere sint tempora?</p>
+                <p>Quos a harum quisquam, sit ratione rem similique quod in est eius ducimus architecto voluptatibus odio.</p>
+            </main>
+
+            <aside class="blog-aside">
+                <h3>Categorías</h3>
+                <ul>
+                    <li>Noticias</li>
+                    <li>Deportes</li>
+                    <li>Tecnología</li>
+                </ul>
+            </aside>
+        </div>
+
+        <footer class="blog-footer">
+            &copy; 2026 Blog de Jorge
+        </footer>
+    </div>
+
+
+    <div class="separador-ejercicio">EJERCICIO 2: PRODUCTO (Tradicional / Floats)</div>
+
+    <article class="prod-article">
+        <img src="https://via.placeholder.com/150" alt="Zapatilla" class="prod-img">
+        
+        <div class="prod-datos">
+            <div class="prod-borrar">X</div>
+            <h3 class="prod-nombre">Zapatilla Converse</h3>
+            <p class="prod-precio">59,90 €</p>
+            <p>Descripción breve del producto flotando a la derecha de la imagen.</p>
+            
+            <div style="margin-top: 10px;">
+                <span style="display:inline-block; width:20px; height:20px; background:red; border-radius:50%;"></span>
+                <span style="display:inline-block; width:20px; height:20px; background:blue; border-radius:50%;"></span>
+            </div>
+        </div>
+        
+        <div class="clear"></div>
+    </article>
+
+
+    <div class="separador-ejercicio">EJERCICIO 3: WEB FLEXBOX</div>
+
+    <div style="background: white; max-width: 1000px; margin: auto; border: 1px solid #ccc;">
+        
+        <header class="flex-page-header">
+            <div class="logo">LOGOTIPO</div>
+            <nav class="flex-menu">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Galería</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="flex-hero">
+            <h2>Bienvenido a nuestra web</h2>
+            <p>Ejemplo de maquetación usando solamente Flexbox.</p>
+        </section>
+
+        <section class="flex-gallery">
+            <div class="flex-card">
+                <img src="https://via.placeholder.com/150" alt="Foto">
+                <p>Foto 1</p>
+            </div>
+            <div class="flex-card">
+                <img src="https://via.placeholder.com/150" alt="Foto">
+                <p>Foto 2</p>
+            </div>
+            <div class="flex-card">
+                <img src="https://via.placeholder.com/150" alt="Foto">
+                <p>Foto 3</p>
+            </div>
+            <div class="flex-card">
+                <img src="https://via.placeholder.com/150" alt="Foto">
+                <p>Foto 4</p>
+            </div>
+        </section>
+    </div>
+
+
+    <div class="separador-ejercicio">EJERCICIO 4: TRANSICIONES Y ICONOS</div>
+
+    <section class="cta-box">
+        <h2>Disfruta la Navidad</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        
+        <button class="btn-transition">¡COMPRAR AHORA!</button>
+    </section>
+
+    <section class="info-flex">
+        <div class="info-item">
+            <i class="fas fa-star"></i> <h3>Calidad</h3>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-thumbs-up"></i> <h3>Garantía</h3>
+            <p>Vivamus sagittis lacus vel augue laoreet.</p>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-check"></i> <h3>Seguridad</h3>
+            <p>Donec sed odio dui. Cras mattis consectetur.</p>
+        </div>
+    </section>
+
+
+    <div class="separador-ejercicio">EJERCICIO 5: CSS GRID AREAS</div>
+
+    <div class="grid-layout">
+        <header class="g-header">HEADER (Cabecera)</header>
+        <nav class="g-nav">NAV (Menú)</nav>
+        <main class="g-main">
+            MAIN (Contenido Principal)
+            <p>Aquí va el texto gordo de la página.</p>
+        </main>
+        <aside class="g-aside">ASIDE (Barra lateral 200px)</aside>
+        <footer class="g-footer">FOOTER (Pie de página)</footer>
+    </div>
+
+</body>
+</html>
