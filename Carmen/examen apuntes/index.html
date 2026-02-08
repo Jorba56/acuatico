@@ -2,74 +2,88 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Chuleta Examen CSS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jorge Barriga Rubio">
+    <title>Inicio - Aguas Viajes S.L.</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
 
-    <header class="header-fijo">
-        <nav class="menu-principal">
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Servicios</a></li>
-                <li class="dropdown">
-                    <a href="#">Productos ▾</a>
-                    <ul class="submenu">
-                        <li><a href="#">Opción A</a></li>
-                        <li><a href="#">Opción B</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <div style="height: 80px;"></div>
+  <header>
+    <div id="menu">
+      <img id="logo" src="2.png">
+      <span id="botones">
+        <a href="destinos.html">Destinos</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="contacto.html">Contacto</a>
+      </span>
+    </div>
+  </header>
 
-    <section class="banner-hero">
-        <img src="https://via.placeholder.com/800x300" alt="Fondo" class="img-fondo">
-        <div class="texto-superpuesto">
-            <h1>Título Centrado</h1>
-            <p>Este texto está posicionado con absolute sobre la imagen.</p>
+  <div id="bienvenida">
+    <img id ="portada" src="https://blog.localadventures.mx/wp-content/uploads/2017/12/vuelos-baratos-paginas-b.jpg">
+    <p>Descubre el mundo con nosotros. En Aguas  Viajes S.L. te ayudamos a planificar tus vacaciones soñadas, desde escapadas cortas hasta aventuras inolvidables. Tu próxima aventura empieza aquí.</p>
+  </div>
+  <br>
+  <hr>
+  <section id="destinos">
+        <h2>Destinos Populares</h2>
+        <div class="tarjeta">
+        <div class="destino">
+            <img src="https://www.101viajes.com/sites/default/files/puesta-sol-paris.jpg" alt="París">
+            <h3>París</h3>
+            <p>La ciudad del amor.</p>
         </div>
-    </section>
-
-    <section class="contenedor-columnas">
-        <h2>Columnas (Cajas)</h2>
-        
-        <div class="fila clearfix">
-            <div class="col-float">Columna Float 1</div>
-            <div class="col-float">Columna Float 2</div>
-            <div class="col-float">Columna Float 3</div>
+        <div class="destino">
+            <img src="https://www.bekiaviajes.com/images/ciudades/portada/0000/6-h.jpg" alt="Roma">
+            <h3>Roma</h3>
+            <p>Historia y cultura.</p>
         </div>
+        <div class="destino">
+            <img src="https://i0.wp.com/www.touristjapan.com/wp-content/uploads/2025/04/things-to-do-in-tokyo-this-weekend-scaled.jpg?fit=2560%2C1707&ssl=1" alt="Tokio">
+            <h3>Tokio</h3>
+            <p>Innovación y tradición.</p>
+            </div>
+            </div>
+            <br>
+  </section>
+    <br>
+    <br> <!-- saltos de línea para separar los elementos de la web del hr-->
+    <hr> <!--hr para diferenciar mejor las secciones de la web-->
 
-        <hr>
+  <section id="servicios"> <!--agrupar elementos para servicios-->
+    <h2>Servicios</h2>
+    <div class="tarjeta">
+      <div class="servicio">
+        <h3>✈️ Vuelos ✈️</h3>
+        <p>Reserva tus vuelos con facilidad.</p>
+      </div>
+      <div class="servicio">
+        <h3>🏨 Hoteles 🏨</h3>
+        <p>Alojamientos cómodos y seguros.</p>
+      </div>
+      <div class="servicio">
+        <h3>🧭 Excursiones 🧭</h3>
+        <p>Disfruta de actividades únicas.</p>
+      </div>
+    </div>
+  </section>
+    <br>
+    <hr>
+  <section id="contacto"> <!--agrupar formulario para datos de contacto-->
+    <h2>Contacto</h2>
+    <form>
+      <input type="text" placeholder="Nombre" required><br><br>
+      <input type="email" placeholder="Email" required><br><br>
+      <textarea placeholder="Mensaje" rows="4" required></textarea><br><br>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
 
-        <div class="fila-flex">
-            <div class="col-flex">Tarjeta 1</div>
-            <div class="col-flex">Tarjeta 2</div>
-            <div class="col-flex">Tarjeta 3</div>
-        </div>
-    </section>
-
-    <section class="tablas">
-        <h2>Tabla Rayada (nth-child)</h2>
-        <table>
-            <tr><th>Nombre</th><th>Edad</th></tr>
-            <tr><td>Ana</td><td>25</td></tr>
-            <tr><td>Juan</td><td>30</td></tr>
-            <tr><td>Luis</td><td>28</td></tr>
-            <tr><td>Marta</td><td>22</td></tr>
-        </table>
-    </section>
-
-    <section class="formulario-estilo">
-        <h2>Contacto</h2>
-        <form>
-            <input type="text" placeholder="Nombre (focus cambia color)">
-            <button type="button" class="btn-animado">Enviar (Hover & Active)</button>
-        </form>
-    </section>
-
+  <footer>
+    <p>© 2025 Aguas Viajes S.L. | Síguenos en redes sociales: @aguasviajes</p>
+  </footer>
 </body>
 </html>
+
+

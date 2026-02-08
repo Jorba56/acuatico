@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Jorge Barriga Rubio">
+    <title>Tienda JBR</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+  <header>
+    <div id="menu">
+      <span id="titulo">
+        <h2>Tienda JBR</h2>
+      </span>
+    </div>
+  </header>
+  <h3>¡Bienvenido a la Tienda JBR! Explora nuestros productos y añade tus favoritos al carrito.</h3> 
+  <hr>
+  
+  <div id="mensaje">
+    
+    <h2>Busca tu producto:</h2> <!--hr para diferenciar mejor las secciones de la web-->
+    <input type="text" id="searchInput" placeholder="Search a product...">
+  </div>
+  <hr>
+  <section id="productos">
+        <h2>Productos disponibles:</h2>
+        <div id="productos2">
+            <!-- Los productos se cargarán aquí mediante JavaScript -->
+        </div>
+  </section>
+    <br>
+    <br> <!-- saltos de línea para separar los elementos de la web del hr-->
+    <hr> <!--hr para diferenciar mejor las secciones de la web-->
+    <div id="carrito">
+        <h3>Contenido del carrito:</h3>
+        <div id="carrito2">
+            <!-- El contenido del carrito se cargará aquí mediante JavaScript -->
+          </div>
+
+    </div>
+    <hr>
+    <section id="zona-usuario">
+        
+        <div id="login-container" style="text-align: center; padding: 20px;">
+            <h3>Identifícate para finalizar la compra</h3>
+            <input type="text" id="user" placeholder="Usuario (ej: admin)">
+            <input type="password" id="pass" placeholder="Contraseña">
+            <button id="btnLogin">Iniciar Sesión</button>
+            <p id="error-login" style="color: red; display: none;">Usuario o contraseña no válidos</p>
+        </div>
+
+        <div id="caja-container" style="display: none; text-align: center; padding: 20px; background-color: #e0e7ff; border-radius: 8px; margin: 20px auto; max-width: 400px;">
+            <h3>Zona de Pago</h3>
+            <p>Bienvenido, <span id="nombre-usuario" style="font-weight: bold;"></span></p>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="cupon">¿Tienes un cupón?</label><br>
+                <input type="text" id="cupon" placeholder="CÓDIGO DESCUENTO">
+                <button id="aplicarDes" style="background-color: #28a745; font-size: 1.2em;">APLICAR DESCUENTO</button>
+            </div>
+
+            <button id="btnComprarFinal" style="background-color: #28a745; font-size: 1.2em;">PAGAR AHORA</button>
+        </div>
+
+    </section>
+  <footer>
+    <p>© 2025 Tienda JBR S.L. </p>
+  </footer>
+</body>
+<script type="module" src="./script.js" defer></script>
+</html>

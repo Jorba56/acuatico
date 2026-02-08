@@ -23,7 +23,7 @@ function mostrarTareas() {
     tareas.forEach((tarea) => {
         // Usamos onclick directamente en el botón
         lista.innerHTML += `
-            <li class="item">
+            <li>
                 ${tarea}
                 <button onclick="this.parentElement.remove()">Delete</button> </li>
             

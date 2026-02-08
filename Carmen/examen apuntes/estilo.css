@@ -1,218 +1,137 @@
-/* =========================================
-   0. RESET BÁSICO (Siempre pon esto al inicio)
-   PDF 2.5: Box Sizing
-   ========================================= */
-* {
-    /* IMPORTANTE: Hace que el padding y border no aumenten 
-       el tamaño total de la caja. Vital para columnas. */
-    box-sizing: border-box; 
+/* estilos.css */
+body {
+    font-family: Georgia, serif;
     margin: 0;
     padding: 0;
-}
-
-body {
-    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    padding-bottom: 50px;
 }
-
-/* =========================================
-   1. MENÚ HORIZONTAL (PDF 2.6)
-   ========================================= */
-.header-fijo {
-    width: 100%;
-    background-color: #333;
-    /* PDF 2.7: Position Fixed (se queda pegado arriba) */
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000; /* Asegura que esté por encima de todo */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* Sombra suave */
+/* Header y Logo */
+#logo {
+    width: 50px;
+    height: 85px;
+    float: left;
+    padding-left: 10px;
 }
-
-.menu-principal ul {
-    list-style-type: none; /* Quita los puntos de la lista */
-    text-align: center; /* Centra los enlaces */
-}
-
-.menu-principal > ul > li {
-    display: inline-block; /* Pone los elementos en fila horizontal */
-}
-
-.menu-principal a {
-    display: block;
-    padding: 20px;
+header {
+    background-color: #ff5a44;
     color: white;
-    text-decoration: none; /* Quita el subrayado azul */
-    transition: background 0.3s; /* PDF 2.7: Transición suave */
-}
-
-/* Pseudo-clase :hover (PDF 2.3) */
-.menu-principal a:hover {
-    background-color: #555;
-    color: #ffcc00;
-}
-
-/* MENÚ DESPLEGABLE (Dropdown) - Nivel Avanzado PDF 2.6 */
-.dropdown {
-    position: relative; /* Necesario para posicionar el submenu */
-}
-
-.submenu {
-    display: none; /* Oculto por defecto */
-    position: absolute;
-    background-color: #444;
-    min-width: 150px;
-    left: 0;
-}
-
-.submenu li {
-    display: block; /* En el submenú queremos uno debajo de otro */
-}
-
-/* Muestra el submenú cuando pasas el ratón por el padre */
-.dropdown:hover .submenu {
-    display: block;
-}
-
-/* =========================================
-   2. POSICIONAMIENTO RELATIVO/ABSOLUTO (PDF 2.5)
-   Truco para texto sobre imagen
-   ========================================= */
-.banner-hero {
-    position: relative; /* El padre debe ser relative */
     width: 100%;
-    height: 300px;
-    overflow: hidden; /* Si la imagen es muy grande, recorta */
+    height: 95px;
 }
-
-.img-fondo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* La imagen cubre todo sin deformarse (Clave en tu tarea anterior) */
-    opacity: 0.8;
+/* Tipografías */
+h1, h2, h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1a1b73; /* He añadido el color corporativo a los títulos */
 }
-
-.texto-superpuesto {
-    position: absolute; /* El hijo es absolute */
-    top: 50%;     /* Centrado vertical */
-    left: 50%;    /* Centrado horizontal */
-    transform: translate(-50%, -50%); /* Ajuste fino del centrado (PDF 2.7) */
-    
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
+/* Menú de navegación */
+#botones {
+    float: right;
+    margin-top: 35px; /* Ajustado para centrar verticalmente */
+}
+#botones a {
     color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
+    padding: 8px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
 }
-
-/* =========================================
-   3. COLUMNAS: FLOAT VS FLEX (PDF 2.5 y 2.7)
-   ========================================= */
-
-/* --- MÉTODO A: FLOAT (Antiguo, pero sale en tus PDFs) --- */
-.clearfix::after {
-    /* Truco "Clearfix" para limpiar floats */
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.col-float {
-    float: left; /* Flota a la izquierda */
-    width: 33.33%; /* Ocupa un tercio del ancho */
-    padding: 20px;
-    background-color: #ddd;
-    border: 1px solid white;
-}
-
-/* --- MÉTODO B: FLEXBOX (Más moderno, usado en tu tarea) --- */
-.fila-flex {
-    display: flex; /* Activa Flexbox */
-    justify-content: space-between; /* Espacio entre elementos */
-    gap: 20px; /* Separación (hueco) */
-    padding: 20px;
-}
-
-.col-flex {
-    flex: 1; /* Todos crecen igual */
-    background-color: #ff5a44; /* Color de tu marca */
-    color: white;
-    padding: 20px;
-    text-align: center;
-    border-radius: 8px;
-    /* Sombra (PDF 2.7) */
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.5); 
-}
-
-/* =========================================
-   4. PSEUDO-CLASES :nth-child (PDF 2.3)
-   ========================================= */
-table {
-    width: 100%;
-    border-collapse: collapse; /* Quita doble borde */
-    margin: 20px 0;
-}
-
-th, td {
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: left;
-}
-
-/* Pinta las filas pares de un color distinto (Efecto cebra) */
-tr:nth-child(even) {
-    background-color: #e2e2e2;
-}
-/* Pinta el encabezado diferente */
-tr:first-child {
+#botones a:hover {
+    border-radius: 3px;
     background-color: #1a1b73;
-    color: white;
 }
-
-/* =========================================
-   5. FORMULARIOS Y TRANSICIONES (PDF 2.6 y 2.7)
-   ========================================= */
-.formulario-estilo {
-    max-width: 400px;
-    margin: 0 auto; /* Centrar bloque */
+/* Secciones Generales */
+section {
     padding: 20px;
-    background: white;
+    text-align: center;
+}
+.contenedor-flex {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+/* Tarjetas (usado en destinos y servicios) */
+.tarjeta {
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px #1a1b73;
+    width: 250px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s; /* Un pequeño efecto suave */
+}
+.tarjeta:hover {
+    transform: scale(1.02); /* Efecto al pasar el ratón */
+}
+.tarjeta img {
+    width: 100%; /* Ajuste para que la imagen ocupe el ancho de la tarjeta */
+    height: 180px;
+    object-fit: cover; /*la imagen mantiene su relacion de apecto, pero ocupa todo el contenedor*/
+    border-radius: 5px;
+}
+/* Elementos específicos del Index */
+#bienvenida {
+    padding-top: 15px;
+    margin: auto;
+    width: 60%;
+    text-align: center;
+}
+#bienvenida > p {
+    display: block;
+    background-color: white; /* Añadido fondo para legibilidad */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px #1a1b73;
+    padding: 20px;
+    text-align: center;
+}
+#portada {
+    width: 100%;
+    height: 80%;
+    max-width: 400px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    margin: auto;
+}
+/* Formulario */
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px #1a1b73;
+    display: inline-block; /* Para que la caja se ajuste al contenido */
+}
+input, textarea {
     border: 1px solid #ccc;
-}
-
-input[type="text"] {
-    width: 100%;
+    border-radius: 8px;
     padding: 10px;
+    width: 250px;
     margin-bottom: 10px;
-    border: 2px solid #ccc;
+    font-family: Arial, Helvetica, sans-serif;
+}
+input:focus, textarea:focus {
+    border: 2px solid #ff5a44;
     outline: none;
-    transition: border-color 0.3s; /* Animación al enfocar */
 }
-
-/* Pseudo-clase :focus (cuando escribes dentro) */
-input[type="text"]:focus {
-    border-color: #ff5a44;
-}
-
-.btn-animado {
-    width: 100%;
-    padding: 10px;
+button {
     background-color: #1a1b73;
     color: white;
     border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    /* PDF 2.7: Transformaciones */
-    transition: transform 0.2s, background-color 0.2s;
+    font-size: 16px;
 }
-
-/* Efecto al pasar el ratón */
-.btn-animado:hover {
-    background-color: #2a2b93;
-    transform: scale(1.05); /* Se hace un 5% más grande */
+button:hover {
+    background-color: #ff5a44;
 }
-
-/* Efecto al hacer clic */
-.btn-animado:active {
-    transform: scale(0.95); /* Se encoge un poco */
+/* Footer */
+footer {
+    background-color: #ff5a44;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 50px;
 }
